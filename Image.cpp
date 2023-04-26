@@ -18,8 +18,7 @@ namespace prog
     return height_;
   }
 
-  // TODO: remove this DUMMY_color variable once you have appropriate fields for representing image pixels.
-  Color DUMMY_color;
+  // TODO: remove this DUMMY_color variable once you have appropriate fields for representing image pixels. (feito)
 
   Color& Image::at(int x, int y)
   {
