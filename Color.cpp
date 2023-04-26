@@ -2,7 +2,7 @@
 
 namespace prog {
     Color::Color() {
-
+  
     }
     Color::Color(const Color& other) {
 
