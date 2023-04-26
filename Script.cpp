@@ -150,13 +150,10 @@ namespace prog {
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& c = image->at(w, h);
-                rgb_value& r = c.red();
-                rgb_value& g = c.green();
-                rgb_value& b = c.blue();
-                if (r == r1 && g == g1 && b == b1) {
-                    r = r2;
-                    g = g2;
-                    b = b2;
+                if (c.red() == r1 && c.green() == g1 && c.blue() == b1) {
+                    c.red() = r2;
+                    c.green() = g2;
+                    c.blue() = b2;
                 }
             }
         }
