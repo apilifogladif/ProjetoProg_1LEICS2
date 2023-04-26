@@ -9,9 +9,9 @@ namespace prog
   {
   private:
     // TODO: define private fields for image state
-    int width_;
-    int height_;
-    std::vector<Color> pixels_;
+    int width_; // largura
+    int height_; // altura
+    std::vector<Color> pixels_; // pixel matrix
   public:
     Image(int w, int h, const Color &fill = {255, 255, 255});
     ~Image();
