@@ -4,7 +4,6 @@ namespace prog
 {
   Image::Image(int w, int h, const Color &fill) : : width_(w), height_(h), pixels_(w * h, fill)
   {
-  
   }
   Image::~Image()
   {
