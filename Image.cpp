@@ -22,7 +22,7 @@ namespace prog
 
   Color& Image::at(int x, int y) // versão mutável
   {
-    return pixels_[y*width_ + x]; // y*widht_ + x: cada linha tem "width_" (largura) pixels, então a x coluna na y linha estará na posição y*width_ + x
+    return pixels_[y*width_ + x]; // y*widht_ + x: cada linha vem depois da linha anterior, e para mover uma linha para baixo temos de saltar o valor de uma linha de largura de pixeis
                                   // calcular índice do pixel no vetor com base das suas coordenadas
   }
 
