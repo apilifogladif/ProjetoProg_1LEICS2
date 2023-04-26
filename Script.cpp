@@ -117,6 +117,22 @@ namespace prog {
         }
     }
     void Script::replace() {
-
+        int r1, g1, b1, r2, g2, b2;
+        input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
+        int width = image->width();
+        int height = image->height();
+        for (int w = 0; w < width; w++) {
+            for (int h = 0; h < height; h++) {
+                Color& c = image->at(w, h);
+                rgb_value& r = c.red();
+                rgb_value& g = c.green();
+                rgb_value& b = c.blue();
+                if (r == r1 && g == g1 && b == b1) {
+                    r = r2;
+                    g = g2;
+                    b = b2;
+                }
+            }
+        }
     }
 }
