@@ -2,7 +2,7 @@
 
 namespace prog
 {
-  Image::Image(int w, int h, const Color &fill) : : width_(w), height_(h), pixels_(w * h, fill) // inicializar pixel matrix com o tamanho w * h (largura vezes altura), e cada elemento é definido com a cor definida (fill)
+  Image::Image(int w, int h, const Color &fill) : width_(w), height_(h), pixels_(w * h, fill) // inicializar pixel matrix com o tamanho w * h (largura vezes altura), e cada elemento é definido com a cor definida (fill)
   {
   }
   Image::~Image()
