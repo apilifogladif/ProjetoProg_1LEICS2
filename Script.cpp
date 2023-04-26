@@ -167,9 +167,9 @@ namespace prog {
         for (int wi = x; wi < x + w; wi++) {
             for (int he = y; he < y + h; he++) {
                 Color& c = image->at(wi, he);
-                rgb_value& r = c.red();
-                rgb_value& g = c.green();
-                rgb_value& b = c.blue();
+                c.red() = r;
+                c.green() = g;
+                c.blue() = b;
                 
             }
         }
