@@ -30,7 +30,7 @@ namespace prog {
     rgb_value DUMMY_rgb_value = 0; 
 
     rgb_value& Color::red()  {
-        return DUMMY_rgb_value;
+      return DUMMY_rgb_value;
     }
     rgb_value& Color::green()  {
       return DUMMY_rgb_value;
