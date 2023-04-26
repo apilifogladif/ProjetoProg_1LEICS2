@@ -48,10 +48,20 @@ namespace prog {
                 save();
                 continue;
             } 
-            // TODO ...
+            if (command == "invert") {
+                invert();
+                continue;
+            }
+            if (command == "to_gray_scale") {
+                to_gray_scale();
+                continue;
+            }
 
         }
     }
+
+
+
     void Script::open() {
         // Replace current image (if any) with image read from PNG file.
         clear_image_if_any();
@@ -72,5 +82,41 @@ namespace prog {
         string filename;
         input >> filename;
         saveToPNG(filename, image);
+    }
+    void Script::invert() {
+        // Transforms each individual pixel (r, g, b) to (255-r,255-g,255-b)
+        int width = image->width();
+        int height = image->height();
+        for (int w = 0; w < width; w++) {
+            for (int h = 0; h < height; h++) {
+                Color& c = image->at(w, h);
+                rgb_value& r = c.red();
+                r = 255 - r;
+                rgb_value& g = c.green();
+                g = 255 - g;
+                rgb_value& b = c.blue();
+                b = 255 - b;
+            }
+        }
+    }
+    void Script::to_gray_scale() {
+        //Transforms each individual pixel (r, g, b) to (v, v, v) where v = (r + g + b)/3.
+        int width = image->width();
+        int height = image->height();
+        for (int w = 0; w < width; w++) {
+            for (int h = 0; h < height; h++) {
+                Color& c = image->at(w, h);
+                rgb_value& r = c.red();
+                rgb_value& g = c.green();
+                rgb_value& b = c.blue();
+                rgb_value v = (r + g + b)/3; 
+                r = v;
+                g = v;
+                b = v;
+            }
+        }
+    }
+    void Script::replace() {
+
     }
 }

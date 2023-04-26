@@ -24,6 +24,16 @@ namespace prog
     void open();
     void blank();
     void save();
+    void invert();
+    void to_gray_scale();
+    void replace();
+    void fill();
+    void h_mirror();
+    void v_mirror();
+    void add();
+    void crop();
+    void rotate_left();
+    void rotate_right();
   };
 }
 #endif

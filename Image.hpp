@@ -8,7 +8,7 @@ namespace prog
   class Image
   {
   private:
-    // TODO: define private fields for image state
+    // TODO: define private fields for image state (feito)
     int width_; // largura
     int height_; // altura
     std::vector<Color> pixels_; // pixel matrix
