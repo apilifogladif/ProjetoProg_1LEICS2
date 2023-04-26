@@ -56,7 +56,38 @@ namespace prog {
                 to_gray_scale();
                 continue;
             }
-
+            if (command == "replace") {
+                replace();
+                continue;
+            }
+            if (command == "fill") {
+                fill();
+                continue;
+            }
+            if (command == "h_mirror") {
+                h_mirror();
+                continue;
+            }
+            if (command == "v_mirror") {
+                v_mirror();
+                continue;
+            }
+            if (command == "add") {
+                add();
+                continue;
+            }
+            if (command == "crop") {
+                crop();
+                continue;
+            }
+            if (command == "rotate_left") {
+                rotate_left();
+                continue;
+            }
+            if (command == "rotate_right") {
+                rotate_right();
+                continue;
+            }
         }
     }
 
