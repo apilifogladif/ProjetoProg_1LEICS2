@@ -90,12 +90,9 @@ namespace prog {
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& c = image->at(w, h);
-                rgb_value& r = c.red();
-                r = 255 - r;
-                rgb_value& g = c.green();
-                g = 255 - g;
-                rgb_value& b = c.blue();
-                b = 255 - b;
+                c.red() = 255 - c.red();
+                c.green() = 255 - c.green();
+                c.blue() = 255 - c.blue();
             }
         }
     }
@@ -106,17 +103,15 @@ namespace prog {
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& c = image->at(w, h);
-                rgb_value& r = c.red();
-                rgb_value& g = c.green();
-                rgb_value& b = c.blue();
-                rgb_value v = (r + g + b)/3; 
-                r = v;
-                g = v;
-                b = v;
+                rgb_value v = (c.red() + c.green() + c.blue())/3; 
+                c.red() = v;
+                c.green() = v;
+                c.blue() = v;                
             }
         }
     }
     void Script::replace() {
+        //se a cor dos pixeis for (r1, g1, b1) altera para (r2, g2, b2)
         int r1, g1, b1, r2, g2, b2;
         input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
         int width = image->width();
@@ -132,6 +127,22 @@ namespace prog {
                     g = g2;
                     b = b2;
                 }
+            }
+        }
+    }
+    void Script::fill() {
+        //prencher um retângulo com w de comprimento e h de largura apartir da posição (x, y) com  a cor (r, g, b)
+        int x, y, w, h, r, g, b;
+        input >> x >> y >> w >> h >> r >> g >> b;
+        int width = image->width();
+        int height = image->height();
+        for (int wi = x; wi < x + w; wi++) {
+            for (int he = y; he < y + h; he++) {
+                Color& c = image->at(wi, he);
+                rgb_value& r = c.red();
+                rgb_value& g = c.green();
+                rgb_value& b = c.blue();
+                
             }
         }
     }
