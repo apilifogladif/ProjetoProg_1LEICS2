@@ -21,7 +21,8 @@ namespace prog
 
   Color& Image::at(int x, int y) // versão mutável
   {
-    return pixels_[y*width_ + x]; // calcular índice do pixel no vetor com base das suas coordenadas
+    return pixels_[y*width_ + x]; // y*widht_ + x: cada linha tem "width_" (largura) pixels, então a x coluna na y linha estará na posição y*width_ + x
+                                  // calcular índice do pixel no vetor com base das suas coordenadas
   }
 
   const Color& Image::at(int x, int y) const // versão apenas de leitura
