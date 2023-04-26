@@ -109,9 +109,14 @@ namespace prog {
                 rgb_value& r = c.red();
                 rgb_value& g = c.green();
                 rgb_value& b = c.blue();
-                rgb_value v = (r + g + b)/3;
-                
+                rgb_value v = (r + g + b)/3; 
+                r = v;
+                g = v;
+                b = v;
             }
         }
+    }
+    void Script::replace() {
+
     }
 }
