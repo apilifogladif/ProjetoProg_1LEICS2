@@ -169,8 +169,7 @@ namespace prog {
                 Color& c = image->at(wi, he);
                 c.red() = r;
                 c.green() = g;
-                c.blue() = b;
-                
+                c.blue() = b;        
             }
         }
     }
