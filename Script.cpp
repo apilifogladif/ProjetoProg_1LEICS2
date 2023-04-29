@@ -162,16 +162,41 @@ namespace prog {
         //prencher um retângulo com w de comprimento e h de largura apartir da posição (x, y) com  a cor (r, g, b)
         int x, y, w, h, r, g, b;
         input >> x >> y >> w >> h >> r >> g >> b;
-        int width = image->width();
-        int height = image->height();
         for (int wi = x; wi < x + w; wi++) {
             for (int he = y; he < y + h; he++) {
                 Color& c = image->at(wi, he);
                 c.red() = r;
                 c.green() = g;
-                c.blue() = b;        
+                c.blue() = b;
             }
         }
     }
-    
+    void Script::h_mirror() {
+        // a segunda metade da imagem cortada na horizontal é o espelho da primera metade
+        int w = image->width();
+        int h = image->height();
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w/2; x++) {
+                Color& og = image->at(x, y);
+                Color& r = image->at(w - 1 - x, y);
+                r.red() = og.red();
+                r.green() = og.green();
+                r.blue() = og.blue();
+            }
+        }
+    }
+    void Script::v_mirror() {
+        // a segunda metade da imagem cortada na vertical é o espelho da primera metade
+        int w = image->width();
+        int h = image->height();
+        for (int y = 0; y < h/2; y++) {
+            for (int x = 0; x < w; x++) {
+                Color& og = image->at(x, y);
+                Color& r = image->at(x, h - 1 - y);
+                r.red() = og.red();
+                r.green() = og.green();
+                r.blue() = og.blue();
+            }
+        }
+    }
 }
