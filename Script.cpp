@@ -180,15 +180,11 @@ namespace prog {
         // inverter horizontalmente
         int w = image->width();
         int h = image->height();
-        Image* novaImagem = new Image(w, h);
-        novaImagem = image;
         for (int y = 0; y < h; y++) {
-            for (int x = 0; x < w; x++) {
+            for (int x = 0; x < w/2; x++) {
                 Color& r = image->at(x, y);
-                Color& og = novaImagem->at(w - 1 - x, y);
-                r.red() = og.red();
-                r.green() = og.green();
-                r.blue() = og.blue();
+                Color& og = image->at(w - 1 - x, y);
+                swap(r, og);
             }
         }
     }
@@ -196,15 +192,11 @@ namespace prog {
         // inverter verticalmente
         int w = image->width();
         int h = image->height();
-        Image* novaImagem = new Image(w, h);
-        novaImagem = image;
-        for (int y = 0; y < h; y++) {
-            for (int x = 0; x < w; x++) {
+        for (int x = 0; x < w; x++) {
+            for (int y = 0; y < h / 2; y++) {
                 Color& r = image->at(x, y);
-                Color& og = novaImagem->at(x, h - 1 - y);
-                r.red() = og.red();
-                r.green() = og.green();
-                r.blue() = og.blue();
+                Color& og = image->at(x, h-1-y);
+                swap(r, og);
             }
         }
     }
