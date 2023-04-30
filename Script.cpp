@@ -246,4 +246,46 @@ namespace prog {
         delete image;
         image = novaImagem;
     }
+    
+    void Script::rotate_left() {
+        int width = image->width();
+        int height = image->height();
+
+        // Criar nova imagem com as dimensões trocadas
+        Image* novaImagem = new Image(height, width, Color());
+
+        // Copiar pixeis em ordem "rodada"
+        for (int w = width - 1; w >= 0; w--) {
+            for (int h = 0; h < height; h++) {
+                Color& pixelOriginal = image->at(w, h);
+                Color& pixelRodado = novaImagem->at(height - h - 1, w);
+                pixelRodado = pixelOriginal;
+            }
+        }
+
+        // Mudar imagem atual pela imagem rodada
+        delete image;
+        image = novaImagem;
+    }
+
+    void Script::rotate_right() {
+        int width = image->width();
+        int height = image->height();
+
+        // Criar nova imagem com as dimensões trocadas
+        Image* novaImagem = new Image(height, width, Color());
+
+        // Copiar pixeis em ordem "rodada"
+        for (int w = 0; w < width; w++) {
+            for (int h = height - 1; h >= 0; h--) {
+                Color& pixelOriginal = image->at(w, h);
+                Color& pixelRodado = novaImagem->at(h, width - w - 1);
+                pixelRodado = pixelOriginal;
+            }
+        }
+
+        // Mudar imagem atual pela imagem rodada
+        delete image;
+        image = novaImagem;
+    }
 }
