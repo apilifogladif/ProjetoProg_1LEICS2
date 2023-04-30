@@ -245,6 +245,7 @@ namespace prog {
         // Alterar imagem atual para a nova imagem cortada
         delete image;
         image = novaImagem;
+        delete novaImagem;
     }
     
     void Script::rotate_left() {
@@ -266,6 +267,7 @@ namespace prog {
         // Mudar imagem atual pela imagem rodada
         delete image;
         image = novaImagem;
+        delete novaImagem;
     }
 
     void Script::rotate_right() {
@@ -287,5 +289,6 @@ namespace prog {
         // Mudar imagem atual pela imagem rodada
         delete image;
         image = novaImagem;
+        delete novaImagem;
     }
 }
