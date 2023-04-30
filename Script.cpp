@@ -172,11 +172,13 @@ namespace prog {
         }
     }
     void Script::h_mirror() {
-        // a segunda metade da imagem cortada na horizontal é o espelho da primera metade
+        // inverter horizontalmente
         int w = image->width();
         int h = image->height();
+        Image* novaImagem = new Image(w, h);
+        novaImagem = image;
         for (int y = 0; y < h; y++) {
-            for (int x = 0; x < w/2; x++) {
+            for (int x = 0; x < w; x++) {
                 Color& og = image->at(x, y);
                 Color& r = image->at(w - 1 - x, y);
                 r.red() = og.red();
@@ -184,12 +186,15 @@ namespace prog {
                 r.blue() = og.blue();
             }
         }
+        image = novaImagem;
     }
     void Script::v_mirror() {
-        // a segunda metade da imagem cortada na vertical é o espelho da primera metade
+        // inverter verticalmente
         int w = image->width();
         int h = image->height();
-        for (int y = 0; y < h/2; y++) {
+        Image* novaImagem = new Image(w, h);
+        novaImagem = image;
+        for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
                 Color& og = image->at(x, y);
                 Color& r = image->at(x, h - 1 - y);
@@ -198,6 +203,7 @@ namespace prog {
                 r.blue() = og.blue();
             }
         }
+        image = novaImagem;
     }
     void Script::add() {
         string filename; 
