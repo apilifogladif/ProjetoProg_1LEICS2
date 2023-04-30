@@ -255,11 +255,10 @@ namespace prog {
         Image* novaImagem = new Image(height, width, Color());
 
         // Copiar pixeis em ordem "rodada"
-        for (int w = width - 1; w >= 0; w--) {
+        for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& pixelOriginal = image->at(w, h);
-                Color& pixelRodado = novaImagem->at(height - h - 1, w);
-                pixelRodado = pixelOriginal;
+                novaImagem->at(height - h - 1, w) = pixelOriginal;
             }
         }
 
@@ -277,10 +276,9 @@ namespace prog {
 
         // Copiar pixeis em ordem "rodada"
         for (int w = 0; w < width; w++) {
-            for (int h = height - 1; h >= 0; h--) {
+            for (int h = 0; h < height; h++) {
                 Color& pixelOriginal = image->at(w, h);
-                Color& pixelRodado = novaImagem->at(h, width - w - 1);
-                pixelRodado = pixelOriginal;
+                novaImagem->at(h, width - w - 1) = pixelOriginal;
             }
         }
 
