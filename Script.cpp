@@ -179,14 +179,13 @@ namespace prog {
         novaImagem = image;
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
-                Color& og = image->at(x, y);
-                Color& r = image->at(w - 1 - x, y);
+                Color& r = image->at(x, y);
+                Color& og = novaImagem->at(w - 1 - x, y);
                 r.red() = og.red();
                 r.green() = og.green();
                 r.blue() = og.blue();
             }
         }
-        image = novaImagem;
     }
     void Script::v_mirror() {
         // inverter verticalmente
@@ -196,14 +195,13 @@ namespace prog {
         novaImagem = image;
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
-                Color& og = image->at(x, y);
-                Color& r = image->at(x, h - 1 - y);
+                Color& r = image->at(x, y);
+                Color& og = novaImagem->at(x, h - 1 - y);
                 r.red() = og.red();
                 r.green() = og.green();
                 r.blue() = og.blue();
             }
         }
-        image = novaImagem;
     }
     void Script::add() {
         string filename; 
