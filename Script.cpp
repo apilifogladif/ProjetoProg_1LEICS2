@@ -267,7 +267,7 @@ namespace prog {
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& pixelOriginal = image->at(w, h);
-                Color& pixelRodado = novaImagem->at(height - h - 1, w);
+                Color& pixelRodado = novaImagem->at(h, width - w - 1);
                 pixelRodado = pixelOriginal;
             }
         }
@@ -288,7 +288,7 @@ namespace prog {
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& pixelOriginal = image->at(w, h);
-                Color& pixelRodado = novaImagem->at(h, width - w - 1);
+                Color& pixelRodado = novaImagem->at(height - h - 1, w);
                 pixelRodado = pixelOriginal;
             }
         }
