@@ -229,3 +229,21 @@ namespace prog {
         // eliminar outra imagem
         delete copia;
     }
+    void Script::crop() {
+        // Cortar imagem para um retângulo de dimensões (x, y), largura w, e altura h
+        int x, y, w, h;
+        input >> x >> y >> w >> h;
+        // Criar uma nova imagem com as medidas que queremos
+        Image* novaImagem = new Image(w, h);
+        // Copiar pixeis para o retângulo para a nova imagem
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                Color& c = image->at(x + i, y + j);
+                novaImagem->at(i, j) = c;
+            }
+        }
+        // Alterar imagem atual para a nova imagem cortada
+        delete image;
+        image = novaImagem;
+    }
+    
