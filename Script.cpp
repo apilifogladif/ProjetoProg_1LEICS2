@@ -177,13 +177,15 @@ namespace prog {
         }
     }
     void Script::h_mirror() {
-        // a segunda metade da imagem cortada na horizontal é o espelho da primera metade
+        // inverter horizontalmente
         int w = image->width();
         int h = image->height();
+        Image* novaImagem = new Image(w, h);
+        novaImagem = image;
         for (int y = 0; y < h; y++) {
-            for (int x = 0; x < w/2; x++) {
-                Color& og = image->at(x, y);
-                Color& r = image->at(w - 1 - x, y);
+            for (int x = 0; x < w; x++) {
+                Color& r = image->at(x, y);
+                Color& og = novaImagem->at(w - 1 - x, y);
                 r.red() = og.red();
                 r.green() = og.green();
                 r.blue() = og.blue();
@@ -191,13 +193,15 @@ namespace prog {
         }
     }
     void Script::v_mirror() {
-        // a segunda metade da imagem cortada na vertical é o espelho da primera metade
+        // inverter verticalmente
         int w = image->width();
         int h = image->height();
-        for (int y = 0; y < h/2; y++) {
+        Image* novaImagem = new Image(w, h);
+        novaImagem = image;
+        for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
-                Color& og = image->at(x, y);
-                Color& r = image->at(x, h - 1 - y);
+                Color& r = image->at(x, y);
+                Color& og = novaImagem->at(x, h - 1 - y);
                 r.red() = og.red();
                 r.green() = og.green();
                 r.blue() = og.blue();
@@ -257,13 +261,14 @@ namespace prog {
         int height = image->height();
 
         // Criar nova imagem com as dimensões trocadas
-        Image* novaImagem = new Image(height, width, Color());
+        Image* novaImagem = new Image(height, width);
 
         // Copiar pixeis em ordem "rodada"
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& pixelOriginal = image->at(w, h);
-                novaImagem->at(height - h - 1, w) = pixelOriginal;
+                Color& pixelRodado = novaImagem->at(height - h - 1, w);
+                pixelRodado = pixelOriginal;
             }
         }
 
@@ -283,7 +288,8 @@ namespace prog {
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& pixelOriginal = image->at(w, h);
-                novaImagem->at(h, width - w - 1) = pixelOriginal;
+                Color& pixelRodado = novaImagem->at(h, width - w - 1);
+                pixelRodado = pixelOriginal;
             }
         }
 

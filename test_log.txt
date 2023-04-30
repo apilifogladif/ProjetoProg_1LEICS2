@@ -2,7 +2,6 @@
 Executing command 'blank' ...
 Executing command 'add' ...
 Executing command 'save' ...
-Could not load image from ./output/add1.png
 >>>> [2] add2 <<<<
 Executing command 'blank' ...
 Executing command 'add' ...
@@ -10,7 +9,6 @@ Executing command 'add' ...
 Executing command 'add' ...
 Executing command 'add' ...
 Executing command 'save' ...
-Could not load image from ./output/add2.png
 >>>> [3] add3 <<<<
 Executing command 'blank' ...
 Executing command 'add' ...
@@ -18,77 +16,63 @@ Executing command 'add' ...
 Executing command 'add' ...
 Executing command 'add' ...
 Executing command 'save' ...
-Could not load image from ./output/add3.png
 >>>> [4] add4 <<<<
 Executing command 'open' ...
 Executing command 'add' ...
 Executing command 'add' ...
 Executing command 'add' ...
 Executing command 'save' ...
-Could not load image from ./output/add4.png
 >>>> [5] add5 <<<<
 Executing command 'blank' ...
 Executing command 'add' ...
 Executing command 'add' ...
 Executing command 'add' ...
 Executing command 'save' ...
-Could not load image from ./output/add5.png
 >>>> [6] basic_blank1 <<<<
 Executing command 'blank' ...
 Executing command 'save' ...
-Could not load image from ./output/basic_blank1.png
 >>>> [7] basic_blank2 <<<<
 Executing command 'blank' ...
 Executing command 'save' ...
-Could not load image from ./output/basic_blank2.png
 >>>> [8] basic_blank3 <<<<
 Executing command 'blank' ...
 Executing command 'blank' ...
 Executing command 'save' ...
-Could not load image from ./output/basic_blank3.png
 >>>> [9] basic_open1 <<<<
 Executing command 'open' ...
 Executing command 'save' ...
-Could not load image from ./output/basic_open1.png
 >>>> [10] basic_open2 <<<<
 Executing command 'open' ...
 Executing command 'open' ...
 Executing command 'save' ...
-Could not load image from ./output/basic_open2.png
 >>>> [11] crop1 <<<<
 Executing command 'open' ...
 Executing command 'crop' ...
 Executing command 'save' ...
-Could not load image from ./output/crop1.png
 >>>> [12] crop2 <<<<
 Executing command 'open' ...
 Executing command 'crop' ...
 Executing command 'save' ...
-Could not load image from ./output/crop2.png
 >>>> [13] crop3 <<<<
 Executing command 'open' ...
 Executing command 'crop' ...
 Executing command 'crop' ...
 Executing command 'save' ...
-Could not load image from ./output/crop3.png
 >>>> [14] crop4 <<<<
 Executing command 'open' ...
 Executing command 'crop' ...
 Executing command 'save' ...
-Could not load image from ./output/crop4.png
 >>>> [15] crop5 <<<<
 Executing command 'open' ...
 Executing command 'crop' ...
 Executing command 'crop' ...
 Executing command 'save' ...
-Could not load image from ./output/crop5.png
 >>>> [16] crop6 <<<<
 Executing command 'open' ...
 Executing command 'crop' ...
 Executing command 'crop' ...
 Executing command 'crop' ...
 Executing command 'save' ...
-Could not load image from ./output/crop6.png
 >>>> [17] extra1 <<<<
 Executing command 'blank' ...
 Executing command 'add' ...
@@ -104,7 +88,6 @@ Executing command 'replace' ...
 Executing command 'invert' ...
 Executing command 'invert' ...
 Executing command 'save' ...
-Could not load image from ./output/extra1.png
 >>>> [18] extra2 <<<<
 Executing command 'blank' ...
 Executing command 'add' ...
@@ -125,7 +108,67 @@ Executing command 'v_mirror' ...
 Executing command 'h_mirror' ...
 Executing command 'invert' ...
 Executing command 'save' ...
-Could not load image from ./output/extra2.png
+Images differ at pixel (0, 0)
+255 255 255 vs 149 149 149
+
+=================================================================
+==12286==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3abc in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #2 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3306 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #2 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 4917600 byte(s) in 2 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3afa in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #9 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 4917600 byte(s) in 2 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3344 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #9 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 9835328 byte(s) leaked in 8 allocation(s).
 >>>> [19] extra3 <<<<
 Executing command 'open' ...
 Executing command 'invert' ...
@@ -139,26 +182,71 @@ Executing command 'invert' ...
 Executing command 'save' ...
 Executing command 'blank' ...
 Executing command 'add' ...
-Script.cpp:211:33: runtime error: member call on null pointer of type 'struct Image'
-Image.cpp:12:12: runtime error: member access within null pointer of type 'const struct Image'
-AddressSanitizer:DEADLYSIGNAL
-=================================================================
-==7729==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x55821b1eecd2 bp 0x7ffc19cc54f0 sp 0x7ffc19cc54e0 T0)
-==7729==The signal is caused by a READ memory access.
-==7729==Hint: address points to the zero page.
-    #0 0x55821b1eecd1 in prog::Image::width() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:12
-    #1 0x55821b1f6316 in prog::Script::add() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:211
-    #2 0x55821b1f2023 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:76
-    #3 0x55821b1e11ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
-    #4 0x55821b1e1f6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
-    #5 0x55821b1e3d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
-    #6 0x55821b1e030b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
-    #7 0x7f049debd082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
-    #8 0x55821b1dfebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
+Executing command 'add' ...
+Executing command 'add' ...
+Executing command 'add' ...
+Executing command 'save' ...
+Images differ at pixel (0, 0)
+0 1 13 vs 1 4 16
 
-AddressSanitizer can not provide additional info.
-SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:12 in prog::Image::width() const
-==7729==ABORTING
+=================================================================
+==12288==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3abc in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #2 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3306 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #2 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 1852800 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3344 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #9 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 1852800 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3afa in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #9 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 3705664 byte(s) leaked in 4 allocation(s).
 >>>> [20] extra4 <<<<
 Executing command 'blank' ...
 Executing command 'fill' ...
@@ -168,24 +256,20 @@ Executing command 'add' ...
 Executing command 'fill' ...
 Executing command 'add' ...
 Executing command 'save' ...
-Could not load image from ./output/extra4.png
 >>>> [21] fill1 <<<<
 Executing command 'open' ...
 Executing command 'fill' ...
 Executing command 'save' ...
-Could not load image from ./output/fill1.png
 >>>> [22] fill2 <<<<
 Executing command 'open' ...
 Executing command 'fill' ...
 Executing command 'fill' ...
 Executing command 'fill' ...
 Executing command 'save' ...
-Could not load image from ./output/fill2.png
 >>>> [23] fill3 <<<<
 Executing command 'open' ...
 Executing command 'fill' ...
 Executing command 'save' ...
-Could not load image from ./output/fill3.png
 >>>> [24] fill4 <<<<
 Executing command 'blank' ...
 Executing command 'fill' ...
@@ -195,61 +279,190 @@ Executing command 'fill' ...
 Executing command 'fill' ...
 Executing command 'fill' ...
 Executing command 'save' ...
-Could not load image from ./output/fill4.png
 >>>> [25] h_mirror1 <<<<
 Executing command 'open' ...
 Executing command 'h_mirror' ...
 Executing command 'save' ...
-Could not load image from ./output/h_mirror1.png
+Images differ at pixel (488, 39)
+250 250 250 vs 255 255 255
+
+=================================================================
+==12318==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3306 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #2 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 882630 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3344 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #9 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 882662 byte(s) leaked in 2 allocation(s).
 >>>> [26] h_mirror2 <<<<
 Executing command 'open' ...
 Executing command 'h_mirror' ...
 Executing command 'h_mirror' ...
 Executing command 'save' ...
-Could not load image from ./output/h_mirror2.png
+Images differ at pixel (131, 39)
+253 253 253 vs 255 255 255
+
+=================================================================
+==12320==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3306 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #2 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 1765260 byte(s) in 2 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3344 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #9 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 1765324 byte(s) leaked in 4 allocation(s).
 >>>> [27] h_mirror3 <<<<
 Executing command 'open' ...
 Executing command 'h_mirror' ...
 Executing command 'save' ...
-Could not load image from ./output/h_mirror3.png
+Images differ at pixel (250, 0)
+243 241 255 vs 242 240 254
+
+=================================================================
+==12322==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3306 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #2 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 664668 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3344 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #9 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 664700 byte(s) leaked in 2 allocation(s).
 >>>> [28] h_mirror4 <<<<
 Executing command 'open' ...
 Executing command 'h_mirror' ...
 Executing command 'save' ...
-Could not load image from ./output/h_mirror4.png
+Images differ at pixel (426, 0)
+254 254 254 vs 255 255 255
+
+=================================================================
+==12324==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3306 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #2 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 1656000 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3344 in prog::Script::h_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:178
+    #9 0x562ab6ddff75 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:68
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 1656032 byte(s) leaked in 2 allocation(s).
 >>>> [29] invert1 <<<<
 Executing command 'open' ...
 Executing command 'invert' ...
 Executing command 'save' ...
-Could not load image from ./output/invert1.png
 >>>> [30] invert2 <<<<
 Executing command 'open' ...
 Executing command 'invert' ...
 Executing command 'invert' ...
 Executing command 'save' ...
-Could not load image from ./output/invert2.png
 >>>> [31] invert3 <<<<
 Executing command 'open' ...
 Executing command 'invert' ...
 Executing command 'save' ...
-Could not load image from ./output/invert3.png
 >>>> [32] invert4 <<<<
 Executing command 'open' ...
 Executing command 'invert' ...
 Executing command 'save' ...
-Could not load image from ./output/invert4.png
 >>>> [33] median_filter1 <<<<
 Executing command 'open' ...
 Executing command 'median_filter' ...
 Executing command '3' ...
 Executing command 'save' ...
-Could not load image from ./output/median_filter1.png
+Images differ at pixel (0, 0)
+255 245 211 vs 255 255 221
 >>>> [34] median_filter2 <<<<
 Executing command 'open' ...
 Executing command 'median_filter' ...
 Executing command '5' ...
 Executing command 'save' ...
-Could not load image from ./output/median_filter2.png
+Images differ at pixel (0, 0)
+255 243 210 vs 255 255 221
 >>>> [35] median_filter3 <<<<
 Executing command 'open' ...
 Executing command 'median_filter' ...
@@ -257,7 +470,8 @@ Executing command '7' ...
 Executing command 'median_filter' ...
 Executing command '3' ...
 Executing command 'save' ...
-Could not load image from ./output/median_filter3.png
+Images differ at pixel (0, 0)
+46 66 84 vs 52 73 91
 >>>> [36] median_filter4 <<<<
 Executing command 'open' ...
 Executing command 'median_filter' ...
@@ -265,7 +479,8 @@ Executing command '3' ...
 Executing command 'median_filter' ...
 Executing command '3' ...
 Executing command 'save' ...
-Could not load image from ./output/median_filter4.png
+Images differ at pixel (0, 0)
+128 128 128 vs 112 112 112
 >>>> [37] median_filter5 <<<<
 Executing command 'open' ...
 Executing command 'median_filter' ...
@@ -277,113 +492,239 @@ Executing command '3' ...
 Executing command 'median_filter' ...
 Executing command '3' ...
 Executing command 'save' ...
-Could not load image from ./output/median_filter5.png
+Images differ at pixel (7, 0)
+38 48 114 vs 38 48 113
 >>>> [38] replace1 <<<<
 Executing command 'open' ...
 Executing command 'replace' ...
 Executing command 'save' ...
-Could not load image from ./output/replace1.png
 >>>> [39] replace2 <<<<
 Executing command 'open' ...
 Executing command 'replace' ...
 Executing command 'save' ...
-Could not load image from ./output/replace2.png
 >>>> [40] replace3 <<<<
 Executing command 'open' ...
 Executing command 'replace' ...
 Executing command 'replace' ...
 Executing command 'save' ...
-Could not load image from ./output/replace3.png
 >>>> [41] rotate_left1 <<<<
 Executing command 'open' ...
 Executing command 'rotate_left' ...
 Executing command 'save' ...
-Could not load image from ./output/rotate_left1.png
+Images differ at pixel (30, 32)
+255 3 3 vs 255 255 255
 >>>> [42] rotate_left2 <<<<
 Executing command 'open' ...
 Executing command 'rotate_left' ...
 Executing command 'rotate_left' ...
 Executing command 'save' ...
-Could not load image from ./output/rotate_left2.png
 >>>> [43] rotate_left3 <<<<
 Executing command 'open' ...
 Executing command 'rotate_left' ...
 Executing command 'rotate_left' ...
 Executing command 'rotate_left' ...
 Executing command 'save' ...
-Could not load image from ./output/rotate_left3.png
+Images differ at pixel (344, 5)
+0 0 0 vs 255 0 0
 >>>> [44] rotate_left_rotate_right1 <<<<
 Executing command 'open' ...
 Executing command 'rotate_left' ...
 Executing command 'rotate_right' ...
 Executing command 'save' ...
-Could not load image from ./output/rotate_left_rotate_right1.png
 >>>> [45] rotate_left_rotate_right2 <<<<
 Executing command 'open' ...
 Executing command 'rotate_left' ...
 Executing command 'rotate_right' ...
 Executing command 'rotate_right' ...
 Executing command 'save' ...
-Could not load image from ./output/rotate_left_rotate_right2.png
+Images differ at pixel (0, 0)
+254 254 254 vs 255 255 255
 >>>> [46] rotate_right1 <<<<
 Executing command 'open' ...
 Executing command 'rotate_right' ...
 Executing command 'save' ...
-Could not load image from ./output/rotate_right1.png
+Images differ at pixel (30, 32)
+255 255 255 vs 255 3 3
 >>>> [47] rotate_right2 <<<<
 Executing command 'open' ...
 Executing command 'rotate_right' ...
 Executing command 'rotate_right' ...
 Executing command 'save' ...
-Could not load image from ./output/rotate_right2.png
 >>>> [48] rotate_right3 <<<<
 Executing command 'open' ...
 Executing command 'rotate_right' ...
 Executing command 'rotate_right' ...
 Executing command 'save' ...
-Could not load image from ./output/rotate_right3.png
 >>>> [49] to_gray_scale1 <<<<
 Executing command 'open' ...
 Executing command 'to_gray_scale' ...
 Executing command 'save' ...
-Could not load image from ./output/to_gray_scale1.png
 >>>> [50] to_gray_scale2 <<<<
 Executing command 'open' ...
 Executing command 'to_gray_scale' ...
 Executing command 'to_gray_scale' ...
 Executing command 'save' ...
-Could not load image from ./output/to_gray_scale2.png
 >>>> [51] to_gray_scale3 <<<<
 Executing command 'open' ...
 Executing command 'to_gray_scale' ...
 Executing command 'save' ...
-Could not load image from ./output/to_gray_scale3.png
 >>>> [52] to_gray_scale4 <<<<
 Executing command 'open' ...
 Executing command 'to_gray_scale' ...
 Executing command 'save' ...
-Could not load image from ./output/to_gray_scale4.png
 >>>> [53] v_mirror1 <<<<
 Executing command 'open' ...
 Executing command 'v_mirror' ...
 Executing command 'save' ...
-Could not load image from ./output/v_mirror1.png
+Images differ at pixel (78, 234)
+243 243 243 vs 90 90 90
+
+=================================================================
+==12391==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3abc in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #2 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 882630 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3afa in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #9 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 882662 byte(s) leaked in 2 allocation(s).
 >>>> [54] v_mirror2 <<<<
 Executing command 'open' ...
 Executing command 'v_mirror' ...
 Executing command 'v_mirror' ...
 Executing command 'save' ...
-Could not load image from ./output/v_mirror2.png
+Images differ at pixel (593, 14)
+255 255 255 vs 241 241 241
+
+=================================================================
+==12393==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3abc in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #2 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 1765260 byte(s) in 2 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3afa in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #9 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 1765324 byte(s) leaked in 4 allocation(s).
 >>>> [55] v_mirror3 <<<<
 Executing command 'open' ...
 Executing command 'v_mirror' ...
 Executing command 'save' ...
-Could not load image from ./output/v_mirror3.png
+Images differ at pixel (8, 222)
+224 219 225 vs 225 220 226
+
+=================================================================
+==12395==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3abc in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #2 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 664668 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3afa in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #9 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 664700 byte(s) leaked in 2 allocation(s).
 >>>> [56] v_mirror4 <<<<
 Executing command 'open' ...
 Executing command 'v_mirror' ...
 Executing command 'save' ...
-Could not load image from ./output/v_mirror4.png
+Images differ at pixel (1, 386)
+255 253 244 vs 255 252 244
+
+=================================================================
+==12397==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6de3abc in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #2 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #3 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #4 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #5 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #6 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #7 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+Indirect leak of 1852800 byte(s) in 1 object(s) allocated from:
+    #0 0x7fbad1f13587 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cc:104
+    #1 0x562ab6dde81f in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/9/ext/new_allocator.h:114
+    #2 0x562ab6dde6b7 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/9/bits/alloc_traits.h:443
+    #3 0x562ab6dde5bb in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/9/bits/stl_vector.h:343
+    #4 0x562ab6dde0d8 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/9/bits/stl_vector.h:358
+    #5 0x562ab6ddd91f in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:302
+    #6 0x562ab6ddd202 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(unsigned long, prog::Color const&, std::allocator<prog::Color> const&) /usr/include/c++/9/bits/stl_vector.h:521
+    #7 0x562ab6ddcb26 in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:5
+    #8 0x562ab6de3afa in prog::Script::v_mirror() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:194
+    #9 0x562ab6ddffcc in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:72
+    #10 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #11 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #12 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #13 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #14 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+
+SUMMARY: AddressSanitizer: 1852832 byte(s) leaked in 2 allocation(s).
 >>>> [57] xpm2_open1 <<<<
 Executing command 'xpm2_open' ...
 Executing command 'input/blarg.xpm' ...
@@ -392,23 +733,23 @@ PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct 
 Image.cpp:16:12: runtime error: member access within null pointer of type 'const struct Image'
 AddressSanitizer:DEADLYSIGNAL
 =================================================================
-==7856==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55821b1eed6b bp 0x7ffc19cc54a0 sp 0x7ffc19cc5490 T0)
-==7856==The signal is caused by a READ memory access.
-==7856==Hint: address points to the zero page.
-    #0 0x55821b1eed6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
-    #1 0x55821b239045 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
-    #2 0x55821b1f2aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
-    #3 0x55821b1f1dc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
-    #4 0x55821b1e11ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
-    #5 0x55821b1e1f6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
-    #6 0x55821b1e3d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
-    #7 0x55821b1e030b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
-    #8 0x7f049debd082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
-    #9 0x55821b1dfebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
+==12410==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x562ab6ddcd6b bp 0x7ffc0c7c9ec0 sp 0x7ffc0c7c9eb0 T0)
+==12410==The signal is caused by a READ memory access.
+==12410==Hint: address points to the zero page.
+    #0 0x562ab6ddcd6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
+    #1 0x562ab6e27409 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
+    #2 0x562ab6de0aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
+    #3 0x562ab6ddfdc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
+    #4 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #5 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #6 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #7 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #8 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+    #9 0x562ab6dcdebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
 
 AddressSanitizer can not provide additional info.
 SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16 in prog::Image::height() const
-==7856==ABORTING
+==12410==ABORTING
 >>>> [58] xpm2_open2 <<<<
 Executing command 'xpm2_open' ...
 Executing command 'input/squares.xpm' ...
@@ -417,23 +758,23 @@ PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct 
 Image.cpp:16:12: runtime error: member access within null pointer of type 'const struct Image'
 AddressSanitizer:DEADLYSIGNAL
 =================================================================
-==7857==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55821b1eed6b bp 0x7ffc19cc54a0 sp 0x7ffc19cc5490 T0)
-==7857==The signal is caused by a READ memory access.
-==7857==Hint: address points to the zero page.
-    #0 0x55821b1eed6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
-    #1 0x55821b239045 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
-    #2 0x55821b1f2aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
-    #3 0x55821b1f1dc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
-    #4 0x55821b1e11ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
-    #5 0x55821b1e1f6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
-    #6 0x55821b1e3d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
-    #7 0x55821b1e030b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
-    #8 0x7f049debd082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
-    #9 0x55821b1dfebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
+==12411==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x562ab6ddcd6b bp 0x7ffc0c7c9ec0 sp 0x7ffc0c7c9eb0 T0)
+==12411==The signal is caused by a READ memory access.
+==12411==Hint: address points to the zero page.
+    #0 0x562ab6ddcd6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
+    #1 0x562ab6e27409 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
+    #2 0x562ab6de0aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
+    #3 0x562ab6ddfdc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
+    #4 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #5 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #6 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #7 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #8 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+    #9 0x562ab6dcdebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
 
 AddressSanitizer can not provide additional info.
 SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16 in prog::Image::height() const
-==7857==ABORTING
+==12411==ABORTING
 >>>> [59] xpm2_open3 <<<<
 Executing command 'xpm2_open' ...
 Executing command 'input/tetris.xpm' ...
@@ -442,23 +783,23 @@ PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct 
 Image.cpp:16:12: runtime error: member access within null pointer of type 'const struct Image'
 AddressSanitizer:DEADLYSIGNAL
 =================================================================
-==7858==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55821b1eed6b bp 0x7ffc19cc54a0 sp 0x7ffc19cc5490 T0)
-==7858==The signal is caused by a READ memory access.
-==7858==Hint: address points to the zero page.
-    #0 0x55821b1eed6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
-    #1 0x55821b239045 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
-    #2 0x55821b1f2aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
-    #3 0x55821b1f1dc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
-    #4 0x55821b1e11ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
-    #5 0x55821b1e1f6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
-    #6 0x55821b1e3d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
-    #7 0x55821b1e030b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
-    #8 0x7f049debd082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
-    #9 0x55821b1dfebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
+==12412==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x562ab6ddcd6b bp 0x7ffc0c7c9ec0 sp 0x7ffc0c7c9eb0 T0)
+==12412==The signal is caused by a READ memory access.
+==12412==Hint: address points to the zero page.
+    #0 0x562ab6ddcd6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
+    #1 0x562ab6e27409 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
+    #2 0x562ab6de0aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
+    #3 0x562ab6ddfdc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
+    #4 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #5 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #6 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #7 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #8 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+    #9 0x562ab6dcdebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
 
 AddressSanitizer can not provide additional info.
 SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16 in prog::Image::height() const
-==7858==ABORTING
+==12412==ABORTING
 >>>> [60] xpm2_open4 <<<<
 Executing command 'xpm2_open' ...
 Executing command 'input/mondrian.xpm' ...
@@ -467,23 +808,23 @@ PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct 
 Image.cpp:16:12: runtime error: member access within null pointer of type 'const struct Image'
 AddressSanitizer:DEADLYSIGNAL
 =================================================================
-==7859==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55821b1eed6b bp 0x7ffc19cc54a0 sp 0x7ffc19cc5490 T0)
-==7859==The signal is caused by a READ memory access.
-==7859==Hint: address points to the zero page.
-    #0 0x55821b1eed6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
-    #1 0x55821b239045 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
-    #2 0x55821b1f2aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
-    #3 0x55821b1f1dc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
-    #4 0x55821b1e11ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
-    #5 0x55821b1e1f6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
-    #6 0x55821b1e3d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
-    #7 0x55821b1e030b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
-    #8 0x7f049debd082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
-    #9 0x55821b1dfebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
+==12413==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x562ab6ddcd6b bp 0x7ffc0c7c9ec0 sp 0x7ffc0c7c9eb0 T0)
+==12413==The signal is caused by a READ memory access.
+==12413==Hint: address points to the zero page.
+    #0 0x562ab6ddcd6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
+    #1 0x562ab6e27409 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
+    #2 0x562ab6de0aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
+    #3 0x562ab6ddfdc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
+    #4 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #5 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #6 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #7 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #8 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+    #9 0x562ab6dcdebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
 
 AddressSanitizer can not provide additional info.
 SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16 in prog::Image::height() const
-==7859==ABORTING
+==12413==ABORTING
 >>>> [61] xpm2_open5 <<<<
 Executing command 'xpm2_open' ...
 Executing command 'input/lion.xpm' ...
@@ -492,23 +833,23 @@ PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct 
 Image.cpp:16:12: runtime error: member access within null pointer of type 'const struct Image'
 AddressSanitizer:DEADLYSIGNAL
 =================================================================
-==7860==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55821b1eed6b bp 0x7ffc19cc54a0 sp 0x7ffc19cc5490 T0)
-==7860==The signal is caused by a READ memory access.
-==7860==Hint: address points to the zero page.
-    #0 0x55821b1eed6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
-    #1 0x55821b239045 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
-    #2 0x55821b1f2aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
-    #3 0x55821b1f1dc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
-    #4 0x55821b1e11ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
-    #5 0x55821b1e1f6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
-    #6 0x55821b1e3d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
-    #7 0x55821b1e030b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
-    #8 0x7f049debd082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
-    #9 0x55821b1dfebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
+==12414==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x562ab6ddcd6b bp 0x7ffc0c7c9ec0 sp 0x7ffc0c7c9eb0 T0)
+==12414==The signal is caused by a READ memory access.
+==12414==Hint: address points to the zero page.
+    #0 0x562ab6ddcd6a in prog::Image::height() const /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16
+    #1 0x562ab6e27409 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/PNG.cpp:31
+    #2 0x562ab6de0aee in prog::Script::save() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:115
+    #3 0x562ab6ddfdc2 in prog::Script::run() /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Script.cpp:48
+    #4 0x562ab6dcf1ea in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x811ea)
+    #5 0x562ab6dcff6d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x81f6d)
+    #6 0x562ab6dd1d17 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x83d17)
+    #7 0x562ab6dce30b in main /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test.cpp:187
+    #8 0x7fbad0f7d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082)
+    #9 0x562ab6dcdebd in _start (/mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/test+0x7febd)
 
 AddressSanitizer can not provide additional info.
 SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Filipa/code/ProjetoProg_1LEICS2/Image.cpp:16 in prog::Image::height() const
-==7860==ABORTING
+==12414==ABORTING
 >>>> [62] xpm2_save1 <<<<
 Executing command 'open' ...
 Executing command 'xpm2_save' ...
@@ -517,7 +858,7 @@ Executing command 'blank' ...
 Executing command 'xpm2_open' ...
 Executing command 'output/xpm2_save1.xpm' ...
 Executing command 'save' ...
-Could not load image from ./output/xpm2_save1.png
+Images have different dimensions: 16x7 != 1x1
 >>>> [63] xpm2_save2 <<<<
 Executing command 'open' ...
 Executing command 'xpm2_save' ...
@@ -526,7 +867,7 @@ Executing command 'blank' ...
 Executing command 'xpm2_open' ...
 Executing command 'output/xpm2_save2.xpm' ...
 Executing command 'save' ...
-Could not load image from ./output/xpm2_save2.png
+Images have different dimensions: 150x150 != 1x1
 >>>> [64] xpm2_save3 <<<<
 Executing command 'open' ...
 Executing command 'xpm2_save' ...
@@ -535,7 +876,7 @@ Executing command 'blank' ...
 Executing command 'xpm2_open' ...
 Executing command 'output/xpm2_save3.xpm' ...
 Executing command 'save' ...
-Could not load image from ./output/xpm2_save3.png
+Images have different dimensions: 300x300 != 1x1
 >>>> [65] xpm2_save4 <<<<
 Executing command 'open' ...
 Executing command 'xpm2_save' ...
@@ -544,7 +885,7 @@ Executing command 'blank' ...
 Executing command 'xpm2_open' ...
 Executing command 'output/xpm2_save4.xpm' ...
 Executing command 'save' ...
-Could not load image from ./output/xpm2_save4.png
+Images have different dimensions: 270x480 != 1x1
 >>>> [66] xpm2_save5 <<<<
 Executing command 'open' ...
 Executing command 'xpm2_save' ...
@@ -553,4 +894,4 @@ Executing command 'blank' ...
 Executing command 'xpm2_open' ...
 Executing command 'output/xpm2_save5.xpm' ...
 Executing command 'save' ...
-Could not load image from ./output/xpm2_save5.png
+Images have different dimensions: 250x380 != 1x1
