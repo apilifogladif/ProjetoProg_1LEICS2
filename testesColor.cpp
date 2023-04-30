@@ -1,6 +1,7 @@
 
 // Project file headers
 #include "Script.hpp"
+#include "Color.hpp"
 #include "PNG.hpp"
 // C++ library headers
 #include <algorithm>
