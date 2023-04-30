@@ -205,7 +205,7 @@ namespace prog {
         input >> filename >> r >> g >> b >> x >> y;
 
         // carregar imagem do ficheiro png
-        Image *copia = loadFromPNG(filename)
+        Image *copia = loadFromPNG(filename);
 
         // determinar dimensões da outra imagem
         int width = copia->width();
@@ -214,9 +214,9 @@ namespace prog {
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 // cor do pixel da outra imagem
-                Color& pixel = outraImagem->at(w, h);
+                Color& pixel = copia->at(w, h);
                 // se cor do pixel da outra imagem não for uma cor neutra, copiar pixel da imagem atual
-                if (pixel.r != r || pixel.g != g || pixel.b != b) {
+                if (pixel.red() != r || pixel.green() != g || pixel.blue() != b) {
                     // coordenadas do pixel na imagem atual
                     int atualW = x + w;
                     int atualH = y + h;
@@ -246,4 +246,3 @@ namespace prog {
         delete image;
         image = novaImagem;
     }
-    
