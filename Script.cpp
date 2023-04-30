@@ -88,6 +88,11 @@ namespace prog {
                 rotate_right();
                 continue;
             }
+            /*if (command == "median_filter") {
+                median_filter();
+                continue;
+            }*/
+            
         }
     }
 
@@ -286,4 +291,10 @@ namespace prog {
         delete image;
         image = novaImagem;
     }
+
+
+    /*void median_filter(){
+        int ws;
+        input >> ws;
+    }*/
 }

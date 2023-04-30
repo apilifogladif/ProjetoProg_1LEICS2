@@ -34,6 +34,7 @@ namespace prog
     void crop();
     void rotate_left();
     void rotate_right();
+    //void median_filter();
   };
 }
 #endif
