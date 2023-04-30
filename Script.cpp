@@ -258,13 +258,14 @@ namespace prog {
         int height = image->height();
 
         // Criar nova imagem com as dimensões trocadas
-        Image* novaImagem = new Image(height, width, Color());
+        Image* novaImagem = new Image(height, width);
 
         // Copiar pixeis em ordem "rodada"
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& pixelOriginal = image->at(w, h);
-                novaImagem->at(height - h - 1, w) = pixelOriginal;
+                Color& pixelRodado = novaImagem->at(height - h - 1, w);
+                pixelRodado = pixelOriginal;
             }
         }
 
@@ -284,7 +285,8 @@ namespace prog {
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& pixelOriginal = image->at(w, h);
-                novaImagem->at(h, width - w - 1) = pixelOriginal;
+                Color& pixelRodado = novaImagem->at(h, width - w - 1);
+                pixelRodado = pixelOriginal;
             }
         }
 
