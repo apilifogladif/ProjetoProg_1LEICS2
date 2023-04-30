@@ -1,8 +1,8 @@
 
 // Project file headers
 #include "Script.hpp"
+#include "Color.hpp"
 #include "PNG.hpp"
-
 // C++ library headers
 #include <algorithm>
 #include <cstdlib>
@@ -130,48 +130,6 @@ namespace prog
       assert(d.blue() == 33);
       cout << "Color tests passed!" << endl;
     }
-
-    void test_scripts(const string &spec)
-    {
-      DIR *directory = ::opendir((root_path + "/scripts").c_str());
-      if (directory == nullptr)
-      {
-        cerr << "Unable to open scripts directory!" << endl;
-        return;
-      }
-      vector<string> scripts_to_execute;
-      ::dirent *entry;
-      while ((entry = readdir(directory)) != nullptr)
-      {
-        if (entry->d_type == DT_REG)
-        {
-          string fname = entry->d_name;
-          if (fname.find(spec) != string::npos)
-          {
-            scripts_to_execute.push_back(fname.substr(0, fname.find_last_of('.')));
-          }
-        }
-      }
-      ::closedir(directory);
-      if (scripts_to_execute.empty())
-      {
-        cout << "No scripts matched the spec: " << spec << endl;
-        return;
-      }
-      sort(scripts_to_execute.begin(), scripts_to_execute.end());
-
-      cout << "== " << scripts_to_execute.size() << " tests to execute  ==" << endl;
-      for (string id : scripts_to_execute)
-      {
-        run_test(id);
-      }
-
-      cout << "== TEST EXECUTION SUMMARY ==" << endl
-           << "Total tests: " << total_tests << endl
-           << "Passed tests: " << passed_tests << endl
-           << "Failed tests: " << failed_tests << endl
-           << "See " << LOG_FILE_NAME << " for details." << endl;
-    }
   };
 }
 
@@ -181,10 +139,6 @@ int main(int argc, char **argv)
   ++argv;
   prog::TestDriver driver(argc == 2 ? argv[1] : ".");
   string spec = argc >=1 ? argv[0] : "";
-  if (spec == "Color") {
-    driver.color_tests();
-  } else {
-    driver.test_scripts(spec);
-  }
+  driver.color_tests();
   return 0;
 }
