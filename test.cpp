@@ -37,7 +37,7 @@ namespace prog
     bool test_script(const string &id)
     {
       string script_file = root_path + "/scripts/" + id + ".txt";
-      string out_file = root_path + "/output/" + id + ".png";
+      string out_file = root_path + "/input/" + id + ".png";
       string exp_file = root_path + "/expected/" + id + ".png";
       Script s(script_file);
       s.run();
