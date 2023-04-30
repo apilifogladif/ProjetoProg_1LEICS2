@@ -246,3 +246,4 @@ namespace prog {
         delete image;
         image = novaImagem;
     }
+}
