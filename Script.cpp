@@ -162,17 +162,87 @@ namespace prog {
         //prencher um retângulo com w de comprimento e h de largura apartir da posição (x, y) com  a cor (r, g, b)
         int x, y, w, h, r, g, b;
         input >> x >> y >> w >> h >> r >> g >> b;
-        int width = image->width();
-        int height = image->height();
         for (int wi = x; wi < x + w; wi++) {
             for (int he = y; he < y + h; he++) {
                 Color& c = image->at(wi, he);
                 c.red() = r;
                 c.green() = g;
                 c.blue() = b;
-                
             }
         }
     }
-    
-}
+    void Script::h_mirror() {
+        // a segunda metade da imagem cortada na horizontal é o espelho da primera metade
+        int w = image->width();
+        int h = image->height();
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w/2; x++) {
+                Color& og = image->at(x, y);
+                Color& r = image->at(w - 1 - x, y);
+                r.red() = og.red();
+                r.green() = og.green();
+                r.blue() = og.blue();
+            }
+        }
+    }
+    void Script::v_mirror() {
+        // a segunda metade da imagem cortada na vertical é o espelho da primera metade
+        int w = image->width();
+        int h = image->height();
+        for (int y = 0; y < h/2; y++) {
+            for (int x = 0; x < w; x++) {
+                Color& og = image->at(x, y);
+                Color& r = image->at(x, h - 1 - y);
+                r.red() = og.red();
+                r.green() = og.green();
+                r.blue() = og.blue();
+            }
+        }
+    }
+    void Script::add() {
+        string filename; 
+        int r, g, b, x, y;
+        input >> filename >> r >> g >> b >> x >> y;
+
+        // carregar imagem do ficheiro png
+        Image *copia = loadFromPNG(filename);
+
+        // determinar dimensões da outra imagem
+        int width = copia->width();
+        int height = copia->height();
+
+        for (int w = 0; w < width; w++) {
+            for (int h = 0; h < height; h++) {
+                // cor do pixel da outra imagem
+                Color& pixel = copia->at(w, h);
+                // se cor do pixel da outra imagem não for uma cor neutra, copiar pixel da imagem atual
+                if (pixel.red() != r || pixel.green() != g || pixel.blue() != b) {
+                    // coordenadas do pixel na imagem atual
+                    int atualW = x + w;
+                    int atualH = y + h;
+                    // copiar pixel para a imagem atual
+                    image->at(atualW, atualH) = pixel;
+                }
+            }   
+        }
+        
+        // eliminar outra imagem
+        delete copia;
+    }
+    void Script::crop() {
+        // Cortar imagem para um retângulo de dimensões (x, y), largura w, e altura h
+        int x, y, w, h;
+        input >> x >> y >> w >> h;
+        // Criar uma nova imagem com as medidas que queremos
+        Image* novaImagem = new Image(w, h);
+        // Copiar pixeis para o retângulo para a nova imagem
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                Color& c = image->at(x + i, y + j);
+                novaImagem->at(i, j) = c;
+            }
+        }
+        // Alterar imagem atual para a nova imagem cortada
+        delete image;
+        image = novaImagem;
+    }
