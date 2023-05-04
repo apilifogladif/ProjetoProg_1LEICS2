@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <set>
 #include <fstream>
 #include "Script.hpp"
 #include "PNG.hpp"
@@ -291,31 +292,39 @@ namespace prog {
     void Script::median_filter() {
         int ws;
         input >> ws;
-        if (ws < 3 || ws % 2 == 0) {
+        if (ws % 2 == 0 || ws < 3) {
             return;
         }
-        for (int y = 0; y < image->height(); ++y) {
-            for (int x = 0; x < image->width(); ++x) {
-            std::vector<int> reds;
-            std::vector<int> greens;
-            std::vector<int> blues;
-            for (int ny = std::max(0, y - ws/2); ny <= std::min(image->height() - 1, y + ws/2); ny++) {
-                for (int nx = std::max(0, x - ws/2); nx <= std::min(image->width() - 1, x + ws/2); nx++) {
-                    int r, g, b;
-                    image->setPixel(nx, ny, r, g, b);
-                    reds.push_back(r);
-                    greens.push_back(g);
-                    blues.push_back(b);
+        int width = image->width();
+        int height = image->height();
+        Image* copia = new Image(width, height);
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                std::vector<int> reds, greens, blues;
+                for (int nx = max(0, x - ws/2); nx <= min(width - 1, x + ws/2); nx++) {
+                    for (int ny = max(0, y - ws/2); ny <= min(height - 1, y + ws/2); ny++) {
+                        Color color = image->at(nx, ny);
+                        reds.push_back(color.red());
+                        greens.push_back(color.green());
+                        blues.push_back(color.blue());
+                    }
                 }
-            }
-            std::sort(reds.begin(), reds.end());
-            std::sort(greens.begin(), greens.end());
-            std::sort(blues.begin(), blues.end());
-            int mr = reds[reds.size() / 2];
-            int mg = greens[greens.size() / 2];
-            int mb = blues[blues.size() / 2];
-            image->setPixel(x, y, mr, mg, mb);
+
+                std::sort(reds.begin(), reds.end());
+                std::sort(greens.begin(), greens.end());
+                std::sort(blues.begin(), blues.end());
+
+                int idxmedio = reds.size() / 2;
+                int mr = reds[idxmedio];
+                int mg = greens[idxmedio];
+                int mb = blues[idxmedio];
+
+                copia->set(x, y, Color(mr, mg, mb));
             }
         }
+
+        delete image;
+        image = copia;
     }
 }
