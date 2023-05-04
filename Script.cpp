@@ -270,28 +270,6 @@ namespace prog {
         image = novaImagem;
     }
 
-    void Script::median_filter() {
-        int ws;
-        input >> ws;
-        // Criar copia da imagem
-        Image* copia = new Image(image->width(), image->height());
-        // Percorrer cada pixel da imagem
-        for (int x = 0; x < image->width(); x++) {
-            for (int y = 0; y < image->height(); y++) {
-                // Calcular os índices mínimos e máximos para a janela do pixel atual
-                int x_min = max(0, x - ws / 2);
-                int x_max = min(image->width() - 1, x + ws / 2);
-                int y_min = max(0, y - ws / 2);
-                int y_max = min(image->height() - 1, y + ws / 2);
-                // Criar um vetor para manter os valores RGB de todos os pixels dentro da janela
-                vector<Color> pixels;
-                // Fazer um loop em cada pixel dentro da janela e anexar os seus valores RGB ao vetor
-                for (int i = x_min; i <= x_max; i++) {
-                    for (int j = y_min; j <= y_max; j++) {
-                        pixels.push_back(image->at(i, j));
-                    }
-                }
-                // Ordenar o vetor de valores RGB na ordem crescente.
                 sort(pixels.begin(), pixels.end());
                 // Encontrar o índice médio do vetor, que é o (ws * ws / 2) elemento.
                 int idxmedio = ws * ws / 2;
