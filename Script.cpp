@@ -271,6 +271,23 @@ namespace prog {
         image = novaImagem;
     }
 
+    void Script::rotate_right() {
+        int width = image->width();
+        int height = image->height();
+
+        // Criar nova imagem com as dimensões trocadas
+        Image* novaImagem = new Image(height, width, Color());
+
+        // Copiar pixeis em ordem "rodada"
+        for (int w = 0; w < width; w++) {
+            for (int h = 0; h < height; h++) {
+                Color& pixelOriginal = image->at(w, h);
+                Color& pixelRodado = novaImagem->at(height - h - 1, w);
+                pixelRodado = pixelOriginal;
+            }
+        }
+    }
+
     void Script::median_filter() {
         int ws;
         input >> ws;
