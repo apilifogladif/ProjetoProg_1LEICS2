@@ -327,6 +327,6 @@ namespace prog {
             c.green() = mg;
             c.blue() = mb;
             }
-      }
-}
+        }
+    }
 }
