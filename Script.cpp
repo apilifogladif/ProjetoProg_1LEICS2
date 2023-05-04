@@ -150,9 +150,9 @@ namespace prog {
         }
     }
     void Script::replace() {
-        //se a cor dos pixeis for (r1, g1, b1) altera para (r2, g2, b2)
+        //if the color of the pixel is (r1, g1, b1) it changes to (r2, g2, b2)
         int r1, g1, b1, r2, g2, b2;
-        input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
+        input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;      //user input of the color that will be replaced and the new color 
         int width = image->width();
         int height = image->height();
         for (int w = 0; w < width; w++) {
@@ -167,9 +167,9 @@ namespace prog {
         }
     }
     void Script::fill() {
-        //prencher um retângulo com w de comprimento e h de largura apartir da posição (x, y) com  a cor (r, g, b)
+        //fill a rectangle with width w and height h starting on coordinates (x, y) with color (r, g, b)
         int x, y, w, h, r, g, b;
-        input >> x >> y >> w >> h >> r >> g >> b;
+        input >> x >> y >> w >> h >> r >> g >> b;       //user input of the starting coordinates, width, height and color to fill of the rectangle
         for (int wi = x; wi < x + w; wi++) {
             for (int he = y; he < y + h; he++) {
                 Color& c = image->at(wi, he);
@@ -180,63 +180,67 @@ namespace prog {
         }
     }
     void Script::h_mirror() {
-        // inverter horizontalmente
+        // horizontal invertion
         int w = image->width();
         int h = image->height();
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w/2; x++) {
-                Color& r = image->at(x, y);
-                Color& og = image->at(w - 1 - x, y);
-                swap(r, og);
+                Color& color_a = image->at(x, y);
+                Color& color_b = image->at(w - 1 - x, y);
+                swap(color_a, color_b);
             }
         }
     }
     void Script::v_mirror() {
-        // inverter verticalmente
+        // vertical invertion
         int w = image->width();
         int h = image->height();
         for (int x = 0; x < w; x++) {
             for (int y = 0; y < h / 2; y++) {
-                Color& r = image->at(x, y);
-                Color& og = image->at(x, h-1-y);
-                swap(r, og);
+                Color& color_a = image->at(x, y);
+                Color& color_b = image->at(x, h-1-y);
+                swap(color_a, color_b);
             }
         }
     }
     void Script::add() {
+        //Copy all pixels from image stored in PNG file filename, except pixels in that image with “neutral” color (r, g, b),
+        // to the rectangle of the current image with top-left corner (x, y) of the current image. 
         string filename; 
         int r, g, b, x, y;
+        //user input of the name of the PNG file, "neutral" color and top-left color of the current image
         input >> filename >> r >> g >> b >> x >> y;
 
-        // carregar imagem do ficheiro png
+        // load new image from PNG file
         Image *copia = loadFromPNG(filename);
 
-        // determinar dimensões da outra imagem
+        // dimensions of that new image
         int width = copia->width();
         int height = copia->height();
 
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
-                // cor do pixel da outra imagem
+                // pixel color of the new image
                 Color& pixel = copia->at(w, h);
-                // se cor do pixel da outra imagem não for uma cor neutra, copiar pixel da imagem atual
+                // if pixel color not equal to the "neutral" color (obtained from the user input), copy pixel of the current image
                 if (pixel.red() != r || pixel.green() != g || pixel.blue() != b) {
-                    // coordenadas do pixel na imagem atual
+                    //coordinates of pixel in current image
                     int atualW = x + w;
                     int atualH = y + h;
-                    // copiar pixel para a imagem atual
+                    //copy pixel to current image
                     image->at(atualW, atualH) = pixel;
                 }
             }   
         }
         
-        // eliminar outra imagem
+        // delete the other image
         delete copia;
     }
     void Script::crop() {
-        // Cortar imagem para um retângulo de dimensões (x, y), largura w, e altura h
+        // crop an image to a rectangle with w of width, h of height and (x, y) of starting coordinates
         int x, y, w, h;
         input >> x >> y >> w >> h;
+        // 
         // Criar uma nova imagem com as medidas que queremos
         Image* novaImagem = new Image(w, h);
         // Copiar pixeis para o retângulo para a nova imagem
