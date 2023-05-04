@@ -291,6 +291,8 @@ namespace prog {
                 pixelRodado = pixelOriginal;
             }
         }
+        delete image;
+        image = novaImagem;
     }
 
     void Script::median_filter(){
