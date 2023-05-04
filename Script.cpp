@@ -89,10 +89,10 @@ namespace prog {
                 rotate_right();
                 continue;
             }
-            /*if (command == "median_filter") {
+            if (command == "median_filter") {
                 median_filter();
                 continue;
-            }*/
+            }
             
         }
     }
