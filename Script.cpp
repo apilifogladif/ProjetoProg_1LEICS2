@@ -306,10 +306,14 @@ namespace prog {
             for (int ny = std::max(0, y - ws/2); ny <= std::min(image->height() - 1, y + ws/2); ny++) {
                 for (int nx = std::max(0, x - ws/2); nx <= std::min(image->width() - 1, x + ws/2); nx++) {
                     int r, g, b;
-                    image->at(nx, ny, r, g, b);
+                    Color& c = image->at(nx, ny);
+                    c.red() = r;
+                    c.green() = g;
+                    c.blue() = b;
                     reds.push_back(r);
                     greens.push_back(g);
                     blues.push_back(b);
+                    
                 }
             }
             std::sort(reds.begin(), reds.end());
@@ -324,4 +328,5 @@ namespace prog {
             c.blue() = mb;
             }
       }
+}
 }
