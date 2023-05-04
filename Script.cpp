@@ -270,63 +270,40 @@ namespace prog {
         image = novaImagem;
     }
 
-    void Script::rotate_right() {
-        int width = image->width();
-        int height = image->height();
-
-        // Criar nova imagem com as dimensões trocadas
-        Image* novaImagem = new Image(height, width, Color());
-
-        // Copiar pixeis em ordem "rodada"
-        for (int w = 0; w < width; w++) {
-            for (int h = 0; h < height; h++) {
-                Color& pixelOriginal = image->at(w, h);
-                Color& pixelRodado = novaImagem->at(height - h - 1, w);
-                pixelRodado = pixelOriginal;
-            }
-        }
-
-        // Mudar imagem atual pela imagem rodada
-        delete image;
-        image = novaImagem;
-    }
-
-
     void Script::median_filter() {
         int ws;
         input >> ws;
-        if (ws < 3 || ws % 2 == 0) {
-            return;
-        }
-        for (int y = 0; y < image->height(); y++) {
-            for (int x = 0; x < image->width(); x++) {
-            std::vector<int> reds;
-            std::vector<int> greens;
-            std::vector<int> blues;
-            for (int ny = std::max(0, y - ws/2); ny <= std::min(image->height() - 1, y + ws/2); ny++) {
-                for (int nx = std::max(0, x - ws/2); nx <= std::min(image->width() - 1, x + ws/2); nx++) {
-                    int r, g, b;
-                    Color& c = image->at(nx, ny);
-                    c.red() = r;
-                    c.green() = g;
-                    c.blue() = b;
-                    reds.push_back(r);
-                    greens.push_back(g);
-                    blues.push_back(b);
-                    
+        // Criar copia da imagem
+        Image* copia = new Image(image->width(), image->height());
+        // Percorrer cada pixel da imagem
+        for (int x = 0; x < image->width(); x++) {
+            for (int y = 0; y < image->height(); y++) {
+                // Calcular os índices mínimos e máximos para a janela do pixel atual
+                int x_min = max(0, x - ws / 2);
+                int x_max = min(image->width() - 1, x + ws / 2);
+                int y_min = max(0, y - ws / 2);
+                int y_max = min(image->height() - 1, y + ws / 2);
+                // Criar um vetor para manter os valores RGB de todos os pixels dentro da janela
+                vector<Color> pixels;
+                // Fazer um loop em cada pixel dentro da janela e anexar os seus valores RGB ao vetor
+                for (int i = x_min; i <= x_max; i++) {
+                    for (int j = y_min; j <= y_max; j++) {
+                        pixels.push_back(image->at(i, j));
+                    }
                 }
-            }
-            std::sort(reds.begin(), reds.end());
-            std::sort(greens.begin(), greens.end());
-            std::sort(blues.begin(), blues.end());
-            int mr = reds[reds.size() / 2];
-            int mg = greens[greens.size() / 2];
-            int mb = blues[blues.size() / 2];
-            Color& c = image->at(x, y);
-            c.red() = mr;
-            c.green() = mg;
-            c.blue() = mb;
+                // Ordenar o vetor de valores RGB na ordem crescente.
+                sort(pixels.begin(), pixels.end());
+                // Encontrar o índice médio do vetor, que é o (ws * ws / 2) elemento.
+                int idxmedio = ws * ws / 2;
+                // Definir os valores RGB do pixel atual na cópia para os valores RGB no índice médio do vetor
+                copia->set(x, y, pixels[idxmedio]);
             }
         }
+        // Substituir a imagem de entrada pela copia
+        delete image;
+        image = copia;
     }
+
+
+    
 }
