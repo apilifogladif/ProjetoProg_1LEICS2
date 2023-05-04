@@ -92,7 +92,8 @@ namespace prog {
             if (command == "median_filter") {
                 median_filter();
                 continue;
-            }   
+            }
+            
         }
     }
 
@@ -302,4 +303,7 @@ namespace prog {
         delete image;
         image = copia;
     }
+
+
+    
 }
