@@ -35,7 +35,6 @@ namespace prog
     void rotate_left();
     void rotate_right();
     void median_filter();
-    void setPixel(int x, int y, Color& mr, Color& mg, Color& mb);
   };
 }
 #endif
