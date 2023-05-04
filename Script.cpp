@@ -1,4 +1,7 @@
 #include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
 #include <fstream>
 #include "Script.hpp"
 #include "PNG.hpp"
@@ -88,10 +91,10 @@ namespace prog {
                 rotate_right();
                 continue;
             }
-            /*if (command == "median_filter") {
+            if (command == "median_filter") {
                 median_filter();
                 continue;
-            }*/
+            }
             
         }
     }
@@ -284,15 +287,71 @@ namespace prog {
                 pixelRodado = pixelOriginal;
             }
         }
-
-        // Mudar imagem atual pela imagem rodada
-        delete image;
-        image = novaImagem;
     }
 
-
-    /*void median_filter(){
+    void Script::median_filter(){
         int ws;
-        input >> ws;
-    }*/
+        input >> ws; //input sempre impar 3,5,7,...
+        int w = image->width();
+        int h = image->height(); //altura e largura da imagem dada
+        
+        if (ws % 2 == 0 || ws < 3) {
+            return;
+        }
+        
+        // Create a new image to store the filtered pixels
+        Image* filteredImage = new Image(w, h);
+
+        for(int y = 0; y < h; y++){ //y -- altura
+            for(int x = 0; x < w; x++){ //x -- largura
+
+                // Extract all the pixels within the window boundaries
+                vector<int> reds, greens, blues;
+                for (int j = max(0, y - ws/2); j <= min(h - 1, y + ws/2); j++) {
+                    for (int i = max(0, x - ws/2); i <= min(w - 1, x + ws/2); i++) {
+                        // Get the RGB values of the pixel at (i, j)
+                        int r, g, b;
+                        Color& c = image->at(i, j);
+                        r = c.red();
+                        g = c.green();
+                        b = c.blue();
+
+                        // Store the RGB values in separate vectors
+                        reds.push_back(r);
+                        greens.push_back(g);
+                        blues.push_back(b);
+                    }
+                }
+                // Sort the RGB values in ascending order and calculate the median value
+                sort(reds.begin(), reds.end());
+                sort(greens.begin(), greens.end());
+                sort(blues.begin(), blues.end());
+
+                int idxmedio = reds.size() / 2;
+                int mr, mg, mb;     //mr->medianRed
+				if (reds.size() % 2 == 0) {
+					mr = (reds[idxmedio] + reds[idxmedio - 1])/2;
+					mg = (greens[idxmedio] + greens[idxmedio - 1])/2;
+					mb = (blues[idxmedio] + blues[idxmedio - 1])/2;
+				}
+				else {
+					mr = reds[idxmedio];
+					mg = greens[idxmedio];
+					mb = blues[idxmedio];
+				}
+
+                // Assign the median pixel value to the corresponding pixel position in the filtered image
+                //filteredImage->set_pixel(x, y, medianR, medianG, medianB);
+                Color& c = filteredImage->at(x, y);
+                c.red() = mr;
+                c.green() = mg;
+                c.blue() = mb;
+            }
+        }
+
+        // Clean up memory
+        delete image;
+        image = filteredImage;
+    }
+
 }
