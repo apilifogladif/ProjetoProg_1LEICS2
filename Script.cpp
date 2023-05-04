@@ -301,7 +301,7 @@ namespace prog {
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                std::vector<int> reds, greens, blues;
+                vector<int> reds, greens, blues;
                 for (int nx = max(0, x - ws/2); nx <= min(width - 1, x + ws/2); nx++) {
                     for (int ny = max(0, y - ws/2); ny <= min(height - 1, y + ws/2); ny++) {
                         Color color = image->at(nx, ny);
@@ -311,16 +311,19 @@ namespace prog {
                     }
                 }
 
-                std::sort(reds.begin(), reds.end());
-                std::sort(greens.begin(), greens.end());
-                std::sort(blues.begin(), blues.end());
+                sort(reds.begin(), reds.end());
+                sort(greens.begin(), greens.end());
+                sort(blues.begin(), blues.end());
 
                 int idxmedio = reds.size() / 2;
                 int mr = reds[idxmedio];
                 int mg = greens[idxmedio];
                 int mb = blues[idxmedio];
 
-                copia->set(x, y, Color(mr, mg, mb));
+                Color& c = image->at(x, y);
+                c.red() = mr;
+                c.green() = mg;
+                c.blue() = mb;
             }
         }
 
