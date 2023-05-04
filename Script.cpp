@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <fstream>
 #include "Script.hpp"
 #include "PNG.hpp"
@@ -294,29 +295,31 @@ namespace prog {
     void Script::median_filter() {
         int ws;
         input >> ws;
-        if (ws % 2 == 0 || ws < 3) {
+        if (ws < 3 || ws % 2 == 0) {
             return;
         }
-        Image *copia = new Image(image->width(), image->height());
         for (int y = 0; y < image->height(); y++) {
             for (int x = 0; x < image->width(); x++) {
-                std::vector<int> reds, greens, blues;
-                for (int ny = std::max(0, y - ws / 2); ny <= std::min(image->height() - 1, y + ws / 2); ny++) {
-                    for (int nx = std::max(0, x - ws / 2); nx <= std::min(image->width() - 1, x + ws / 2); nx++) {
-                        reds.push_back(image->at(nx, ny).r);
-                        greens.push_back(image->at(nx, ny).g);
-                        blues.push_back(image->at(nx, ny).b);
-                    }
+            std::vector<int> reds;
+            std::vector<int> greens;
+            std::vector<int> blues;
+            for (int ny = std::max(0, y - ws/2); ny <= std::min(image->height() - 1, y + ws/2); ny++) {
+                for (int nx = std::max(0, x - ws/2); nx <= std::min(image->width() - 1, x + ws/2); nx++) {
+                    int r, g, b;
+                    image->at(nx, ny, r, g, b);
+                    reds.push_back(r);
+                    greens.push_back(g);
+                    blues.push_back(b);
+                }
             }
             std::sort(reds.begin(), reds.end());
             std::sort(greens.begin(), greens.end());
             std::sort(blues.begin(), blues.end());
-            int idxmedio = (ws * ws /*- 1*/) / 2;
-            Color cormedia(reds[idxmedio], greens[idxmedio], blues[idxmedio]);
-            copia->at(x, y, cormedia);
+            int mr = reds[reds.size() / 2];
+            int mg = greens[greens.size() / 2];
+            int mb = blues[blues.size() / 2];
+            image->at(x, y, mr, mg, mb);
             }
-        }
-        delete image;
-        image = copia;
-    }
+      }
+}
 }
