@@ -318,8 +318,10 @@ namespace prog {
             int mr = reds[reds.size() / 2];
             int mg = greens[greens.size() / 2];
             int mb = blues[blues.size() / 2];
-            image->at(x, y, mr, mg, mb);
+            Color& c = image->at(x, y);
+            c.red() = mr;
+            c.green() = mg;
+            c.blue() = mb;
             }
       }
-}
 }
