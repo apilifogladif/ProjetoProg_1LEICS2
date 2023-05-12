@@ -42,17 +42,20 @@ namespace prog {
             // take the # out
             hexColor = hexColor.substr(1, 6);
             int value = 0;
+            std::cout << hexColor << std::endl;
             for (int i = 0; i < 6; i++) {
                 if (isalpha(hexColor[i])) {
                     char aux = tolower(hexColor[i]);
-                    value = aux - 87;
+                    value = aux - 'a' + 10;
                 }
+                // for the case when hex length is lower than 6 (ex: xpm2_open5.txt)
                 else if (hexColor[i] == 0) {
                     value = 0;
                 }
                 else {
-                    value = hexColor[i] - 48;
+                    value = hexColor[i] - '0';
                 }
+
                 switch (i) {
                     case 0:
                         c.red() = value * 16;
