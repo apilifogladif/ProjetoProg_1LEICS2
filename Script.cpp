@@ -95,6 +95,10 @@ namespace prog {
                 median_filter();
                 continue;
             }
+            if (command == "xpm2_open") {
+                xpm2_open();
+                continue;
+            }
             
         }
     }
@@ -122,6 +126,12 @@ namespace prog {
         input >> filename;
         saveToPNG(filename, image);
     }
+    void Script::xpm2_open() {
+        // open xpm2 file
+        string filename;
+        input >> filename;
+        image = loadFromXPM2(filename);
+    }
     void Script::invert() {
         // Transforms each individual pixel (r, g, b) to (255-r,255-g,255-b)
         int width = image->width();
@@ -136,7 +146,7 @@ namespace prog {
         }
     }
     void Script::to_gray_scale() {
-        //Transforms each individual pixel (r, g, b) to (v, v, v) where v = (r + g + b)/3.
+        // Transforms each individual pixel (r, g, b) to (v, v, v) where v = (r + g + b)/3.
         int width = image->width();
         int height = image->height();
         for (int w = 0; w < width; w++) {
@@ -150,9 +160,9 @@ namespace prog {
         }
     }
     void Script::replace() {
-        //if the color of the pixel is (r1, g1, b1) it changes to (r2, g2, b2)
+        // if the color of the pixel is (r1, g1, b1) it changes to (r2, g2, b2)
         int r1, g1, b1, r2, g2, b2;
-        //user input of the color that will be replaced and the new color 
+        // user input of the color that will be replaced and the new color 
         input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
         int width = image->width();
         int height = image->height();
@@ -168,9 +178,9 @@ namespace prog {
         }
     }
     void Script::fill() {
-        //fill a rectangle with width w and height h starting on coordinates (x, y) with color (r, g, b)
+        // fill a rectangle with width w and height h starting on coordinates (x, y) with color (r, g, b)
         int x, y, w, h, r, g, b;
-        //user input of the starting coordinates, width, height and color to fill of the rectangle
+        // user input of the starting coordinates, width, height and color to fill of the rectangle
         input >> x >> y >> w >> h >> r >> g >> b;
         for (int wi = x; wi < x + w; wi++) {
             for (int he = y; he < y + h; he++) {
@@ -206,7 +216,7 @@ namespace prog {
         }
     }
     void Script::add() {
-        //Copy all pixels from image stored in PNG file filename, except pixels in that image with “neutral” color (r, g, b),
+        // Copy all pixels from image stored in PNG file filename, except pixels in that image with “neutral” color (r, g, b),
         // to the rectangle of the current image with top-left corner (x, y) of the current image. 
         string filename; 
         int r, g, b, x, y;
@@ -226,10 +236,10 @@ namespace prog {
                 Color& pixel = copy->at(w, h);
                 // if pixel color not equal to the "neutral" color (obtained from the user input), copy pixel of the current image
                 if (pixel.red() != r || pixel.green() != g || pixel.blue() != b) {
-                    //coordinates of pixel in current image
+                    // coordinates of pixel in current image
                     int atualW = x + w;
                     int atualH = y + h;
-                    //copy pixel to current image
+                    // copy pixel to current image
                     image->at(atualW, atualH) = pixel;
                 }
             }   
@@ -241,7 +251,7 @@ namespace prog {
     void Script::crop() {
         // crop an image to a rectangle with w of width, h of height and (x, y) of starting coordinates
         int x, y, w, h;
-        //user input of the starting coordinates, width, height of the rectangle
+        // user input of the starting coordinates, width, height of the rectangle
         input >> x >> y >> w >> h;
         // create a new image with the width and height wanted
         Image* newImage = new Image(w, h);
