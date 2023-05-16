@@ -102,25 +102,27 @@ namespace prog {
         // image dimensions
         int width = image->width();
         int height = image->height();
-        // create a set to keep the colors used in image
+        // create a vector to keep the colors used in image
         std::vector<Color> idsColors;
         for (int h = 0; h < height; h++) {
             for (int w = 0; w < width; w++) {
                 const Color& c = image->at(w, h);
                 bool exists = false;
                 int s = idsColors.size();
-                //TODO use find function of algorithm
+
+                //see if that color is already in the vector
                 for (int i = 0; i < s; i++) {
                     if (idsColors[i].red() == c.red() && idsColors[i].blue() == c.blue() && idsColors[i].green() == c.green()) {
                         exists = true;
                     }
                 }
+                //if not, insert
                 if (!exists) {
                     idsColors.push_back(c);
                 }
             }
         }
-        // delete image;
+
         // number of colors
         int s = idsColors.size();
         // dimensions and color information
