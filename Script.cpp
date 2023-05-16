@@ -99,11 +99,12 @@ namespace prog {
                 xpm2_open();
                 continue;
             }
-            
+            if (command == "xpm2_save") {
+                xpm2_save();
+                continue;
+            }
         }
     }
-
-
 
     void Script::open() {
         // Replace current image (if any) with image read from PNG file.
@@ -128,9 +129,16 @@ namespace prog {
     }
     void Script::xpm2_open() {
         // open xpm2 file
+        clear_image_if_any();
         string filename;
         input >> filename;
         image = loadFromXPM2(filename);
+    }
+    void Script::xpm2_save() {
+        // save xpm2 file
+        string filename;
+        input >> filename;
+        saveToXPM2(filename, image);
     }
     void Script::invert() {
         // Transforms each individual pixel (r, g, b) to (255-r,255-g,255-b)
@@ -216,7 +224,8 @@ namespace prog {
         }
     }
     void Script::add() {
-        // Copy all pixels from image stored in PNG file filename, except pixels in that image with “neutral” color (r, g, b),
+        // Copy all pixels from image stored in PNG file filename, 
+        // except pixels in that image with “neutral” color (r, g, b),
         // to the rectangle of the current image with top-left corner (x, y) of the current image. 
         string filename; 
         int r, g, b, x, y;
