@@ -123,12 +123,14 @@ namespace prog {
         input >> w >> h >> fill;
         image = new Image(w, h, fill);
     }
+
     void Script::save() {
         // save current image to PNG file
         string filename;
         input >> filename;
         saveToPNG(filename, image);
     }
+
     void Script::xpm2_open() {
         // open xpm2 file
         clear_image_if_any();
@@ -136,12 +138,14 @@ namespace prog {
         input >> filename;
         image = loadFromXPM2(filename);
     }
+
     void Script::xpm2_save() {
         // save xpm2 file
         string filename;
         input >> filename;
         saveToXPM2(filename, image);
     }
+
     void Script::invert() {
         // transforms each individual pixel (r, g, b) to (255-r,255-g,255-b)
         int width = image->width(); // get image width
@@ -156,6 +160,7 @@ namespace prog {
             }
         }
     }
+
     void Script::to_gray_scale() {
         // transforms each individual pixel (r, g, b) to (v, v, v) where v = (r + g + b)/3
         int width = image->width();
@@ -171,6 +176,7 @@ namespace prog {
             }
         }
     }
+
     void Script::replace() {
         // if the color of the pixel is (r1, g1, b1) it changes to (r2, g2, b2)
         int r1, g1, b1, r2, g2, b2;
@@ -190,6 +196,7 @@ namespace prog {
             }
         }
     }
+
     void Script::fill() {
         // fill a rectangle with width w and height h starting on coordinates (x, y) with color (r, g, b)
         int x, y, w, h, r, g, b;
@@ -205,6 +212,7 @@ namespace prog {
             }
         }
     }
+
     void Script::h_mirror() {
         // horizontal invertion
         int w = image->width();
@@ -220,6 +228,7 @@ namespace prog {
             }
         }
     }
+
     void Script::v_mirror() {
         // vertical invertion
         int w = image->width();
@@ -235,6 +244,7 @@ namespace prog {
             }
         }
     }
+
     void Script::add() {
         // copy all pixels from image stored in PNG file filename, except pixels in that image with “neutral” color (r, g, b),
         // to the rectangle of the current image with top-left corner (x, y) of the current image
