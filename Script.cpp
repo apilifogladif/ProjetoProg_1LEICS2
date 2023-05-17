@@ -115,6 +115,7 @@ namespace prog {
         input >> filename;
         image = loadFromPNG(filename);
     }
+	
     void Script::blank() {
         // replace current image (if any) with blank image
         clear_image_if_any();
