@@ -14,7 +14,7 @@ namespace prog {
         std::ifstream in(file);
         std::string line;
 
-        // info given: c == 1 is always true
+        // c == 1 is always true
         int w, h, n, c;
 
         // the first line is "! XPM2" and we don't need it
@@ -35,7 +35,7 @@ namespace prog {
             getline(in, line);
             std::istringstream iss(line);
 
-            // info given: only c ("color") entries
+            // only c ("color") entries
             char charColor, entry;
             std::string hexColor;
             iss >> charColor >> entry >> hexColor;
@@ -46,15 +46,16 @@ namespace prog {
             Color c;
             int value = 0;
             for (int i = 0; i < 6; i++) {
-                if (isalpha(hexColor[i])) {
-                    char aux = tolower(hexColor[i]);
+                if (isalpha(hexColor[i])) { // if it is a letter
+                    char aux = tolower(hexColor[i]); // put everything in lower case to avoid having upper case
                     value = aux - 'a' + 10;
                 }
-                else {
+                else { // if it is a number
                     value = hexColor[i] - '0';
                 }
-
-                switch (i) {
+                
+                // 'i' corresponds to the index of the number in hexadecimal, assigning each number to the corresponding color and conversion
+                switch (i) { 
                     case 0:
                         c.red() = value * 16;
                         break;
@@ -79,10 +80,10 @@ namespace prog {
             idsColors[charColor] = c;
         }
 
-        for (int l = 0; l < h; l++) {       // lines
+        for (int l = 0; l < h; l++) { // lines
             getline(in, line);
             std::istringstream iss(line);
-            for (int col = 0; col < w; col++) {   // columns
+            for (int col = 0; col < w; col++) { // columns
                 // char in the line l and column c
                 char charPos;
                 iss >> charPos;
@@ -99,9 +100,11 @@ namespace prog {
 
         // XPM2 header
         out << "! XPM2" << std::endl;
+        
         // image dimensions
         int width = image->width();
         int height = image->height();
+        
         // create a vector to keep the colors used in image
         std::vector<Color> idsColors;
         for (int h = 0; h < height; h++) {
@@ -110,13 +113,13 @@ namespace prog {
                 bool exists = false;
                 int s = idsColors.size();
 
-                //see if that color is already in the vector
+                // see if that color is already in the vector
                 for (int i = 0; i < s; i++) {
                     if (idsColors[i].red() == c.red() && idsColors[i].blue() == c.blue() && idsColors[i].green() == c.green()) {
                         exists = true;
                     }
                 }
-                //if not, insert
+                // if not, insert
                 if (!exists) {
                     idsColors.push_back(c);
                 }
@@ -125,10 +128,12 @@ namespace prog {
 
         // number of colors
         int s = idsColors.size();
+        
         // dimensions and color information
         out << std::to_string(width) << " " << std::to_string(height) << " " << std::to_string(s) << " 1" << std::endl;
+        
         // assign a unique character to each color in the image
-        //first char that will be used, position 33 in ASCII table, the others will be 33 + index in vector idsColors
+        // first char that will be used, position 33 in ASCII table, the others will be 33 + index in vector idsColors
         char charPos = '!';
 
         // write the color definitions
@@ -142,6 +147,7 @@ namespace prog {
             // write the color definition line
             out << charPos++ << " c #" << hexColor.str() << "\n";
         }
+        
         // write the image pixels
         for (int h = 0; h < height; h++) {
             for (int w = 0; w < width; w++) {
@@ -156,6 +162,7 @@ namespace prog {
             }
             out << "\n";
         }
+        // close the file
         out.close();
     }
 }
