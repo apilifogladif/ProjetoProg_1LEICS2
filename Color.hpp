@@ -7,7 +7,7 @@ namespace prog
   class Color
   {
     private:
-      unsigned char r_,g_,b_; //private fields color representation done
+      unsigned char r_,g_,b_; // private fields color representation done
     public:
       Color();
       Color(const Color& c);
