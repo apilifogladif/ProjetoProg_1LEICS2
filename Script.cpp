@@ -10,7 +10,7 @@
 using namespace std;
 
 namespace prog {
-    // Use to read color values from a script file.
+    // read color values from a script file
     istream& operator>>(istream& input, Color& c) {
         int r, g, b;
         input >> r >> g >> b;
@@ -24,12 +24,14 @@ namespace prog {
             image(nullptr), input(filename) {
 
     }
+	
     void Script::clear_image_if_any() {
         if (image != nullptr) {
             delete image;
             image = nullptr;
         }
     }
+	
     Script::~Script() {
         clear_image_if_any();
     }
@@ -46,7 +48,7 @@ namespace prog {
                 blank();
                 continue;
             }
-            // Other commands require an image to be previously loaded.
+            // other commands require an image to be previously loaded
             if (command == "save") {
                 save();
                 continue;
@@ -107,14 +109,14 @@ namespace prog {
     }
 
     void Script::open() {
-        // Replace current image (if any) with image read from PNG file.
+        // replace current image (if any) with image read from PNG file
         clear_image_if_any();
         string filename;
         input >> filename;
         image = loadFromPNG(filename);
     }
     void Script::blank() {
-        // Replace current image (if any) with blank image.
+        // replace current image (if any) with blank image
         clear_image_if_any();
         int w, h;
         Color fill;
@@ -122,7 +124,7 @@ namespace prog {
         image = new Image(w, h, fill);
     }
     void Script::save() {
-        // Save current image to PNG file.
+        // save current image to PNG file
         string filename;
         input >> filename;
         saveToPNG(filename, image);
@@ -141,9 +143,10 @@ namespace prog {
         saveToXPM2(filename, image);
     }
     void Script::invert() {
-        // Transforms each individual pixel (r, g, b) to (255-r,255-g,255-b)
-        int width = image->width();
-        int height = image->height();
+        // transforms each individual pixel (r, g, b) to (255-r,255-g,255-b)
+        int width = image->width(); // get image width
+        int height = image->height(); // get image height
+	// goes through the matrix, pixel by pixel, changing the pixel color to (255-r,255-g,255-b), in order to invert the colors
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& c = image->at(w, h);
@@ -154,9 +157,10 @@ namespace prog {
         }
     }
     void Script::to_gray_scale() {
-        // Transforms each individual pixel (r, g, b) to (v, v, v) where v = (r + g + b)/3.
+        // transforms each individual pixel (r, g, b) to (v, v, v) where v = (r + g + b)/3
         int width = image->width();
         int height = image->height();
+	// goes through the matrix, pixel by pixel, changing the pixel color to (v, v, v) where v = (r + g + b)/3, in order to put it in a gray scale
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& c = image->at(w, h);
@@ -174,6 +178,7 @@ namespace prog {
         input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
         int width = image->width();
         int height = image->height();
+	// goes through the matrix, pixel by pixel, and if the original color of the pixel (r1, g1, b1), it changes to (r2, g2, b2) 
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& c = image->at(w, h);
@@ -190,6 +195,7 @@ namespace prog {
         int x, y, w, h, r, g, b;
         // user input of the starting coordinates, width, height and color to fill of the rectangle
         input >> x >> y >> w >> h >> r >> g >> b;
+	// goes through the matrix, pixel by pixel, filling the pixels with the correspondent color
         for (int wi = x; wi < x + w; wi++) {
             for (int he = y; he < y + h; he++) {
                 Color& c = image->at(wi, he);
@@ -204,10 +210,13 @@ namespace prog {
         int w = image->width();
         int h = image->height();
         for (int y = 0; y < h; y++) {
-            for (int x = 0; x < w/2; x++) {
+            for (int x = 0; x < w/2; x++) { // w/2 : mirror in the middle
                 Color& color_a = image->at(x, y);
-                Color& color_b = image->at(w - 1 - x, y);
-                swap(color_a, color_b);
+		// w - 1 - x : in order to obtain the corresponding pixel on the other side of the image, we have to subtract the image 
+		// width by the current position (x) and by one (last position of a line is w - 1)
+                Color& color_b = image->at(w - 1 - x, y); 
+		// it swaps the values of the two variables
+                swap(color_a, color_b); 
             }
         }
     }
@@ -216,20 +225,23 @@ namespace prog {
         int w = image->width();
         int h = image->height();
         for (int x = 0; x < w; x++) {
-            for (int y = 0; y < h / 2; y++) {
+            for (int y = 0; y < h/2; y++) { // h/2 : mirror in the middle
                 Color& color_a = image->at(x, y);
-                Color& color_b = image->at(x, h-1-y);
+		// h - 1 - y : in order to obtain the corresponding pixel on the other side of the image, we have to subtract the image 
+		// height by the current position (y) and by one (last position of a collumn is h - 1)
+                Color& color_b = image->at(x, h - 1 - y);
+		// it swaps the values of the two variables
                 swap(color_a, color_b);
             }
         }
     }
     void Script::add() {
-        // Copy all pixels from image stored in PNG file filename, 
-        // except pixels in that image with “neutral” color (r, g, b),
-        // to the rectangle of the current image with top-left corner (x, y) of the current image. 
+        // copy all pixels from image stored in PNG file filename, except pixels in that image with “neutral” color (r, g, b),
+        // to the rectangle of the current image with top-left corner (x, y) of the current image
         string filename; 
         int r, g, b, x, y;
-        //user input of the name of the PNG file, "neutral" color and top-left color of the current image
+	    
+        // user input of the name of the PNG file, "neutral" color and top-left color of the current image
         input >> filename >> r >> g >> b >> x >> y;
 
         // load new image from PNG file
@@ -246,10 +258,10 @@ namespace prog {
                 // if pixel color not equal to the "neutral" color (obtained from the user input), copy pixel of the current image
                 if (pixel.red() != r || pixel.green() != g || pixel.blue() != b) {
                     // coordinates of pixel in current image
-                    int atualW = x + w;
-                    int atualH = y + h;
+                    int currentW = x + w;
+                    int currentH = y + h;
                     // copy pixel to current image
-                    image->at(atualW, atualH) = pixel;
+                    image->at(currentW, currentH) = pixel;
                 }
             }   
         }
@@ -257,13 +269,17 @@ namespace prog {
         // delete the other image
         delete copy;
     }
+	
     void Script::crop() {
         // crop an image to a rectangle with w of width, h of height and (x, y) of starting coordinates
         int x, y, w, h;
+	    
         // user input of the starting coordinates, width, height of the rectangle
         input >> x >> y >> w >> h;
+	 
         // create a new image with the width and height wanted
         Image* newImage = new Image(w, h);
+	    
         // copy all pixels from the rectangle to the new image
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
@@ -271,6 +287,7 @@ namespace prog {
                 newImage->at(i, j) = c;
             }
         }
+	    
         // change initial image to new image
         delete image;
         image = newImage;
@@ -279,16 +296,21 @@ namespace prog {
     void Script::rotate_left() {
         int width = image->width();
         int height = image->height();
+	    
         // create new image with swapped dimensions
         Image* newImage = new Image(height, width);
-        // copy all pixels in the "rotate" order
+	    
+        // copy all pixels in the "rotated" order
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& originalPixel = image->at(w, h);
+		// width - w - 1 : in order to obtain the corresponding pixel, we have to subtract the image width by the current position (w)
+		// and by one (last position of a line is width - 1)
                 Color& rotatedPixel = newImage->at(h, width - w - 1);
                 rotatedPixel = originalPixel;
             }
         }
+	    
         // change initial image to rotated image
         delete image;
         image = newImage;
@@ -301,37 +323,39 @@ namespace prog {
         // create new image with swapped dimensions
         Image* newImage = new Image(height, width, Color());
 
-        // copy all pixels in the "rotate" order
+        // copy all pixels in the "rotated" order
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
                 Color& originalPixel = image->at(w, h);
+		// height - h - 1 : in order to obtain the corresponding pixel, we have to subtract the image height by the current position (h)
+		// and by one (last position of a collumn is height - 1)
                 Color& rotatedPixel = newImage->at(height - h - 1, w);
                 rotatedPixel = originalPixel;
             }
         }
+	    
         // change initial image to rotated image
         delete image;
         image = newImage;
     }
 
     void Script::median_filter(){
-        int ws;
-        // user input (always odd and >=3)
-        input >> ws;
         // width and height of the given image
         int w = image->width();
         int h = image->height(); 
         
-        if (ws % 2 == 0 || ws < 3) {
+	int ws;
+        input >> ws;
+	// user input has to be always odd and >=3
+        if (ws % 2 == 0 || ws < 3) { 
             return;
         }
         
         // create a new image to store the filtered pixels
         Image* filteredImage = new Image(w, h);
 
-        for(int y = 0; y < h; y++){ //y -- altura
-            for(int x = 0; x < w; x++){ //x -- largura
-
+        for (int y = 0; y < h; y++){ 
+            for (int x = 0; x < w; x++){ 
                 // extract all the pixels within the window boundaries
                 vector<int> reds, greens, blues;
                 for (int j = max(0, y - ws/2); j <= min(h - 1, y + ws/2); j++) {
@@ -342,7 +366,6 @@ namespace prog {
                         r = c.red();
                         g = c.green();
                         b = c.blue();
-
                         // store the RGB values in separate vectors
                         reds.push_back(r);
                         greens.push_back(g);
@@ -355,20 +378,18 @@ namespace prog {
                 sort(blues.begin(), blues.end());
 
                 int idxmedio = reds.size() / 2;
-                int mr, mg, mb;     //mr->medianRed
-				if (reds.size() % 2 == 0) {
-					mr = (reds[idxmedio] + reds[idxmedio - 1])/2;
-					mg = (greens[idxmedio] + greens[idxmedio - 1])/2;
-					mb = (blues[idxmedio] + blues[idxmedio - 1])/2;
-				}
-				else {
-					mr = reds[idxmedio];
-					mg = greens[idxmedio];
-					mb = blues[idxmedio];
-				}
+                int mr, mg, mb; // mr -> medianRed, mg -> medianGreen, mb -> medianBlue
+		if (reds.size() % 2 == 0) {
+			mr = (reds[idxmedio] + reds[idxmedio - 1])/2; 
+			mg = (greens[idxmedio] + greens[idxmedio - 1])/2;
+			mb = (blues[idxmedio] + blues[idxmedio - 1])/2;
+		} else {
+			mr = reds[idxmedio];
+			mg = greens[idxmedio];
+			mb = blues[idxmedio];
+		}
 
-                // Assign the median pixel value to the corresponding pixel position in the filtered image
-                //filteredImage->set_pixel(x, y, medianR, medianG, medianB);
+                // assign the median pixel value to the corresponding pixel position in the filtered image
                 Color& c = filteredImage->at(x, y);
                 c.red() = mr;
                 c.green() = mg;
@@ -376,7 +397,7 @@ namespace prog {
             }
         }
 
-        // Clean up memory
+        // clean up memory
         delete image;
         image = filteredImage;
     }
