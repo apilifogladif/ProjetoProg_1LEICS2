@@ -228,7 +228,7 @@ namespace prog {
             for (int y = 0; y < h/2; y++) { // h/2 : mirror in the middle
                 Color& color_a = image->at(x, y);
 		// h - 1 - y : in order to obtain the corresponding pixel on the other side of the image, we have to subtract the image 
-		// height by the current position (y) and by one (last position of a collumn is h - 1)
+		// height by the current position (y) and by one (last position of a column is h - 1)
                 Color& color_b = image->at(x, h - 1 - y);
 		// it swaps the values of the two variables
                 swap(color_a, color_b);
@@ -328,7 +328,7 @@ namespace prog {
             for (int h = 0; h < height; h++) {
                 Color& originalPixel = image->at(w, h);
 		// height - h - 1 : in order to obtain the corresponding pixel, we have to subtract the image height by the current position (h)
-		// and by one (last position of a collumn is height - 1)
+		// and by one (last position of a column is height - 1)
                 Color& rotatedPixel = newImage->at(height - h - 1, w);
                 rotatedPixel = originalPixel;
             }
