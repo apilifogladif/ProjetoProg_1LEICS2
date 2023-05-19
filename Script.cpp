@@ -7,11 +7,9 @@
 #include "PNG.hpp"
 #include "XPM2.hpp"
 
-using namespace std;
-
 namespace prog {
     // read color values from a script file
-    istream& operator>>(istream& input, Color& c) {
+    std::istream& operator>>(std::istream& input, Color& c) {
         int r, g, b;
         input >> r >> g >> b;
         c.red() = r;
@@ -20,7 +18,7 @@ namespace prog {
         return input;
     }
 
-    Script::Script(const string& filename) :
+    Script::Script(const std::string& filename) :
             image(nullptr), input(filename) {
 
     }
@@ -37,9 +35,9 @@ namespace prog {
     }
 
     void Script::run() {
-        string command;
+        std::string command;
         while (input >> command) {
-            cout << "Executing command '" << command << "' ..." << endl;
+            std::cout << "Executing command '" << command << "' ..." << std::endl;
             if (command == "open") {
                 open();
                 continue;
@@ -111,7 +109,7 @@ namespace prog {
     void Script::open() {
         // replace current image (if any) with image read from PNG file
         clear_image_if_any();
-        string filename;
+        std::string filename;
         input >> filename;
         image = loadFromPNG(filename);
     }
@@ -127,7 +125,7 @@ namespace prog {
 
     void Script::save() {
         // save current image to PNG file
-        string filename;
+        std::string filename;
         input >> filename;
         saveToPNG(filename, image);
     }
@@ -135,14 +133,14 @@ namespace prog {
     void Script::xpm2_open() {
         // open xpm2 file
         clear_image_if_any();
-        string filename;
+        std::string filename;
         input >> filename;
         image = loadFromXPM2(filename);
     }
 
     void Script::xpm2_save() {
         // save xpm2 file
-        string filename;
+        std::string filename;
         input >> filename;
         saveToXPM2(filename, image);
     }
@@ -225,7 +223,7 @@ namespace prog {
 		// width by the current position (x) and by one (last position of a line is w - 1)
                 Color& color_b = image->at(w - 1 - x, y); 
 		// it swaps the values of the two variables
-                swap(color_a, color_b); 
+                std::swap(color_a, color_b); 
             }
         }
     }
@@ -241,7 +239,7 @@ namespace prog {
 		// height by the current position (y) and by one (last position of a column is h - 1)
                 Color& color_b = image->at(x, h - 1 - y);
 		// it swaps the values of the two variables
-                swap(color_a, color_b);
+                std::swap(color_a, color_b);
             }
         }
     }
@@ -249,7 +247,7 @@ namespace prog {
     void Script::add() {
         // copy all pixels from image stored in PNG file filename, except pixels in that image with “neutral” color (r, g, b),
         // to the rectangle of the current image with top-left corner (x, y) of the current image
-        string filename; 
+        std::string filename;
         int r, g, b, x, y;
 	    
         // user input of the name of the PNG file, "neutral" color and top-left color of the current image
@@ -368,9 +366,9 @@ namespace prog {
         for (int y = 0; y < h; y++){ 
             for (int x = 0; x < w; x++){ 
                 // extract all the pixels within the window boundaries
-                vector<int> reds, greens, blues;
-                for (int j = max(0, y - ws/2); j <= min(h - 1, y + ws/2); j++) {
-                    for (int i = max(0, x - ws/2); i <= min(w - 1, x + ws/2); i++) {
+                std::vector<int> reds, greens, blues;
+                for (int j = std::max(0, y - ws/2); j <= std::min(h - 1, y + ws/2); j++) {
+                    for (int i = std::max(0, x - ws/2); i <= std::min(w - 1, x + ws/2); i++) {
                         // get the RGB values of the pixel at (i, j)
                         int r, g, b;
                         Color& c = image->at(i, j);
