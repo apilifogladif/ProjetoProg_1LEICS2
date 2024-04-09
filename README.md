@@ -1,1 +1,1 @@
-# ProjetoProg_1LEICS2
+# ProjetoProg_1LEICS2 (Grade: 20.0)
